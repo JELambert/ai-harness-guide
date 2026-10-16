@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="description" content="A beginner's field guide to AI harnesses for a two-hour McNeese faculty and staff workshop.">
+  <title>AI Harnesses | A beginner's field guide</title>
+  <style>
+    :root { --ink:#17283d; --muted:#50647a; --paper:#f6f4ef; --white:#fffefa; --line:#cbd5d7; --teal:#076b69; --teal-light:#dceee9; --orange:#dc6a37; --navy:#102d49; --focus:#ef9b35; font-family: Avenir Next, Avenir, Segoe UI, sans-serif; color:var(--ink); background:var(--paper); }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; line-height:1.58; }
+    a { color:#075e62; text-underline-offset:.18em; }
+    a:hover { color:#a9461c; }
+    a:focus-visible, button:focus-visible, summary:focus-visible { outline:3px solid var(--focus); outline-offset:3px; }
+    .skip { position:absolute; left:-9999px; top:8px; background:var(--white); padding:.65rem 1rem; z-index:10; }
+    .skip:focus { left:8px; }
+    .shell { max-width:1120px; margin:auto; padding:0 1.25rem; }
+    .topbar { background:var(--navy); color:#fff; }
+    .topbar .shell { min-height:62px; display:flex; justify-content:space-between; align-items:center; gap:1rem; }
+    .brand { display:flex; gap:.65rem; align-items:center; text-transform:uppercase; letter-spacing:.11em; font-size:.8rem; font-weight:800; }
+    .brand-mark { display:grid; place-items:center; width:29px; height:29px; border:1.5px solid #f2b26e; color:#f2b26e; transform:rotate(-12deg); }
+    nav { display:flex; flex-wrap:wrap; gap:1.2rem; }
+    nav a { color:#e1f1ef; font-size:.85rem; text-decoration:none; }
+    nav a:hover { color:#ffc88b; }
+    .hero { padding:5.1rem 0 4rem; background:linear-gradient(115deg,#f6f4ef 0%,#f6f4ef 62%,#e1eee9 100%); border-bottom:1px solid var(--line); }
+    .hero-grid { display:grid; grid-template-columns:minmax(0,1.25fr) minmax(250px,.75fr); gap:3.5rem; align-items:center; }
+    .eyebrow { color:var(--teal); font-size:.79rem; font-weight:800; text-transform:uppercase; letter-spacing:.17em; margin:0 0 1rem; }
+    h1, h2, h3 { font-family: Iowan Old Style, Georgia, serif; line-height:1.12; letter-spacing:-.035em; }
+    h1 { font-size:clamp(3.2rem,7vw,6rem); max-width:12ch; margin:0; }
+    .hero-lead { font-size:1.25rem; max-width:58ch; color:#314b62; margin:1.45rem 0 1.8rem; }
+    .meta { display:flex; flex-wrap:wrap; gap:.65rem; }
+    .pill { display:inline-flex; align-items:center; border:1px solid #9ab6b4; background:#ecf5f1; border-radius:100px; padding:.35rem .8rem; font-size:.8rem; font-weight:700; }
+    .loop-card { background:var(--navy); color:#fff; border-radius:14px; padding:1.55rem; box-shadow:12px 12px 0 #c9ded6; }
+    .loop-card .eyebrow { color:#bde4d8; }
+    .loop-card ol { margin:0; padding:0; list-style:none; }
+    .loop-card li { display:flex; gap:1rem; padding:.65rem 0; border-top:1px solid #50708b; }
+    .loop-card b { color:#ffc18c; font-family:Georgia,serif; font-size:1.4rem; min-width:1.7rem; }
+    .loop-card strong { display:block; }
+    .loop-card span { color:#d7e8ed; font-size:.88rem; }
+    section { padding:4rem 0; border-bottom:1px solid var(--line); }
+    .section-head { max-width:710px; margin-bottom:2.2rem; }
+    h2 { font-size:clamp(2rem,4vw,3.3rem); margin:.1rem 0 .7rem; }
+    h3 { font-size:1.42rem; margin:.1rem 0 .65rem; }
+    p { margin:.5rem 0 1rem; }
+    .lede { color:var(--muted); font-size:1.08rem; }
+    .cards { display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; }
+    .card { background:var(--white); border:1px solid var(--line); border-radius:10px; padding:1.45rem; }
+    .card .number { color:var(--orange); font-weight:800; letter-spacing:.12em; font-size:.8rem; }
+    .card p { color:var(--muted); }
+    .wide { grid-column:span 2; }
+    .checklist { margin:0; padding:0; list-style:none; }
+    .checklist li { padding:.85rem 0 .85rem 2.1rem; position:relative; border-top:1px solid var(--line); }
+    .checklist li::before { content:""; position:absolute; left:.1rem; top:1.1rem; width:1rem; height:1rem; border:2px solid var(--teal); border-radius:3px; }
+    .note { border-left:4px solid var(--orange); padding:.8rem 1.2rem; background:#fff0e8; margin:1.5rem 0; }
+    .prompt { background:var(--navy); color:#fff; border-radius:12px; padding:1.4rem; }
+    .prompt p { color:#e0edf1; }
+    .prompt pre { white-space:pre-wrap; overflow-wrap:anywhere; font:inherit; line-height:1.55; background:#173e5c; padding:1.1rem; border-radius:7px; margin:1rem 0; }
+    .prompt button { appearance:none; border:0; border-radius:5px; padding:.65rem 1rem; background:#f3b57a; color:#17283d; font:inherit; font-weight:800; cursor:pointer; }
+    .prompt button:hover { background:#ffd2a8; }
+    .two-col { display:grid; grid-template-columns:1fr 1fr; gap:1.3rem; }
+    .steps { counter-reset:step; list-style:none; padding:0; margin:0; }
+    .steps li { counter-increment:step; padding:1rem 0 1rem 3rem; border-top:1px solid var(--line); position:relative; }
+    .steps li::before { content:counter(step,decimal-leading-zero); position:absolute; left:0; top:1rem; color:var(--orange); font-weight:900; }
+    details { background:var(--white); border:1px solid var(--line); border-radius:9px; margin:.7rem 0; padding:1rem 1.2rem; }
+    summary { cursor:pointer; font-weight:800; color:var(--navy); }
+    details p:last-child { margin-bottom:0; }
+    .timeline { display:grid; grid-template-columns:repeat(4,1fr); gap:.7rem; }
+    .slot { border-top:4px solid var(--teal); background:var(--white); padding:1.1rem; }
+    .slot time { font-size:.8rem; font-weight:900; color:var(--teal); }
+    .slot h3 { font-size:1.16rem; margin:.5rem 0; }
+    .slot p { color:var(--muted); font-size:.88rem; margin:0; }
+    footer { background:var(--navy); color:#dbe9ed; padding:2rem 0; font-size:.88rem; }
+    footer a { color:#bfede2; }
+    @media(max-width:800px) { .hero-grid,.cards,.two-col { grid-template-columns:1fr; } .wide { grid-column:auto; } .timeline { grid-template-columns:repeat(2,1fr); } .hero { padding:3.7rem 0 3rem; } }
+    @media(max-width:560px) { .topbar .shell { align-items:flex-start; flex-direction:column; padding-top:.85rem; padding-bottom:.85rem; } nav { gap:.8rem; } h1 { font-size:3.25rem; } .timeline { grid-template-columns:1fr; } section { padding:3rem 0; } }
+    @media(prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } }
+    @media print { .topbar, .prompt button { display:none; } section { break-inside:avoid; } .hero,.loop-card,.prompt { print-color-adjust:exact; } }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to main content</a>
+  <header class="topbar"><div class="shell"><div class="brand"><span class="brand-mark" aria-hidden="true">✳</span> AI Harness Field Guide</div><nav aria-label="Page sections"><a href="#before">Before you arrive</a><a href="#workshop">The workshop</a><a href="#try">Try it</a><a href="#tools">Optional setup</a></nav></div></header>
+  <main id="main">
+    <div class="hero"><div class="shell hero-grid"><div><p class="eyebrow">McNeese workshop · faculty and staff</p><h1>Work with AI.<br>Stay in charge.</h1><p class="hero-lead">A practical introduction to AI harnesses, including Codex and Claude Code. Watch one task move from a rough idea to a checked result. No installation is required to follow along.</p><div class="meta"><span class="pill">2-hour guided demo</span><span class="pill">Beginner-friendly</span><span class="pill">Optional hands-on setup</span></div></div><aside class="loop-card" aria-label="The four-step workflow"><p class="eyebrow">The method, in four moves</p><ol><li><b>01</b><div><strong>Scope</strong><span>What should change, and what should not?</span></div></li><li><b>02</b><div><strong>Inspect</strong><span>Let the tool examine only the relevant context.</span></div></li><li><b>03</b><div><strong>Act</strong><span>Request one bounded result.</span></div></li><li><b>04</b><div><strong>Verify</strong><span>Review the output and own the decision.</span></div></li></ol></aside></div></div>
+
+    <section id="before"><div class="shell"><div class="section-head"><p class="eyebrow">01 / Before you arrive</p><h2>You can come with just a question.</h2><p class="lede">This is a guided demonstration, not an installation contest. Bring a small, repeatable task you wish took less time. You can observe every exercise without an account or a terminal.</p></div><div class="cards"><article class="card"><span class="number">BRING</span><h3>A low-stakes example</h3><p>A checklist, public document, synthetic spreadsheet, or toy project is enough. Avoid confidential or student data in practice prompts.</p></article><article class="card"><span class="number">NOTICE</span><h3>One success check</h3><p>What would prove the result is useful? Examples: no missing steps, correct totals, or a clear citation to source material.</p></article><article class="card"><span class="number">OPTIONAL</span><h3>Choose a tool</h3><p>If you already use Codex or Claude Code, bring your laptop and sign in. Otherwise, watch the same workflow on screen.</p></article></div><div class="note"><strong>No tool purchase is required for the workshop.</strong> If you want to practice later, check your institution's account access and data policies before using real work material.</div></div></section>
+
+    <section id="workshop"><div class="shell"><div class="section-head"><p class="eyebrow">02 / The workshop</p><h2>What you will see in two hours</h2><p class="lede">We will compare the shared workflow across tools, not stage a model race.</p></div><div class="timeline"><div class="slot"><time>00–25 MIN</time><h3>The mental model</h3><p>Chat versus a harness; files, permissions, checkpoints, and a human reviewer.</p></div><div class="slot"><time>25–65 MIN</time><h3>First guided task</h3><p>Inspect a small example, define a target, ask for one bounded change, then check it.</p></div><div class="slot"><time>65–95 MIN</time><h3>Break and second tool</h3><p>Optional setup help, then the same pattern in another harness.</p></div><div class="slot"><time>95–120 MIN</time><h3>Your next step</h3><p>Repair a vague prompt, decide what to verify, and choose one low-risk task to try.</p></div></div><div class="two-col" style="margin-top:2rem"><div><h3>What is a harness?</h3><p>A chat assistant answers from the context you provide. An AI harness adds a working environment: files, tools, permissions, and a path to inspect results. That lets it do more than suggest text, but it makes your review more important.</p></div><div><h3>What stays yours?</h3><p>The goal, the source material you permit, the decision to accept a change, and responsibility for the final result. A polished answer is not a verified answer.</p></div></div></div></section>
+
+    <section id="try"><div class="shell"><div class="section-head"><p class="eyebrow">03 / Practice the loop</p><h2>One task, two passes</h2><p class="lede">First ask the harness to understand the job. Then ask it to make a bounded change and show evidence.</p></div><div class="two-col"><div class="prompt"><h3>Pass one: inspect</h3><p>Use this with a small, non-sensitive folder or document.</p><pre id="prompt-one">Read the files relevant to this task. Do not edit anything yet. Summarize what is there, identify missing context, and propose the smallest useful next change. Tell me how we could verify it.</pre><button type="button" data-copy="prompt-one" aria-label="Copy inspection prompt">Copy prompt</button></div><div class="prompt"><h3>Pass two: act and verify</h3><p>Adapt the brackets before sending.</p><pre id="prompt-two">Make only this change: [specific outcome]. Do not alter [boundary]. Show me what changed, then check it against [success criterion]. If you cannot verify something, say so clearly.</pre><button type="button" data-copy="prompt-two" aria-label="Copy change and verification prompt">Copy prompt</button></div></div><div class="two-col" style="margin-top:2rem"><div><h3>Inspect the result</h3><ol class="steps"><li>Compare before and after. Did it change only what you asked?</li><li>Run the check or read the output. Are details and numbers supported?</li><li>Ask what remains uncertain. Fix or reject weak work before sharing.</li></ol></div><div><h3>A good first task</h3><p>Start with a reversible draft: improve a public event checklist, turn a rough agenda into a one-page outline, or summarize a synthetic dataset. A high-stakes decision, final grade, or external message needs a separate human check.</p><p><strong>Exit ticket:</strong> What changed? How did you verify it? What would you keep under human control?</p></div></div></div></section>
+
+    <section id="tools"><div class="shell"><div class="section-head"><p class="eyebrow">04 / Optional setup</p><h2>Pick a path when you are ready.</h2><p class="lede">You do not need both products. Interfaces, plans, and installation steps change, so start from each vendor's current guide.</p></div><details><summary>Codex, a desktop or command-line path</summary><p>Use the <a href="https://developers.openai.com/codex/app">official Codex app guide</a> for the desktop route, or the <a href="https://developers.openai.com/codex/cli">official CLI guide</a> if you prefer a terminal. Sign in, select a small project or folder, and begin with the inspection prompt above. Review proposed file changes and permissions before continuing.</p></details><details><summary>Claude Code, a desktop or command-line path</summary><p>Use the <a href="https://code.claude.com/docs/en/quickstart">official Claude Code quickstart</a> for current requirements and installation. It also links to non-terminal interfaces. Start in a small project folder, ask for an explanation before edits, and inspect what the tool proposes to do.</p></details><details><summary>No setup today</summary><p>Follow the guided demonstration, save the two prompts, and try them later on a non-sensitive example. You can learn the workflow before choosing a product.</p></details><div class="note"><strong>Institutional data check:</strong> Before uploading or connecting real student, personnel, research, or financial material, check McNeese policy and the approved accounts available to you. The workshop examples use synthetic or public material.</div></div></section>
+  </main>
+  <footer><div class="shell">AI Harness Field Guide · Working handout for McNeese faculty and staff. Prepared for review, not yet a public site. <a href="#main">Back to top</a></div></footer>
+  <script>
+    document.querySelectorAll('[data-copy]').forEach((button) => {
+      button.addEventListener('click', async () => {
+        const text = document.getElementById(button.dataset.copy).textContent;
+        try {
+          await navigator.clipboard.writeText(text);
+          button.textContent = 'Copied';
+          setTimeout(() => { button.textContent = 'Copy prompt'; }, 2200);
+        } catch (_) {
+          button.textContent = 'Select and copy the text above';
+        }
+      });
+    });
+  </script>
+</body>
+</html>
