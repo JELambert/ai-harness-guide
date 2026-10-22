@@ -10,7 +10,7 @@ After review, copy the file into the existing Hugo site's static tree as `module
 
 1. Confirm the audience, date, institutional branding, and whether McNeese wants an official or personal-site URL.
 2. Confirm whether the main demonstration is a faculty/staff document workflow, a small code task, or both.
-3. Check current official Codex and Claude Code setup pages. The guide links to the vendors rather than embedding install commands or prices.
+3. Check the current official ChatGPT Desktop and Claude Desktop download pages. The guide links to the vendors rather than embedding install commands or prices.
 4. Review the sample prompt and data-handling language against McNeese policy.
 5. Preview on desktop and phone, check keyboard access, then run the Hugo release check from `ops/boot/README.md` if the site is changed.
 
