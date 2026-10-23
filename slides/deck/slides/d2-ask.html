@@ -3,25 +3,25 @@
 <p style="font-size:24px;letter-spacing:3px;text-transform:uppercase;color:#2F5BD3;font-weight:600">The payoff</p>
 <h2 style="font-family:'Source Serif 4', Georgia, serif;font-size:72px;font-weight:600;line-height:1.1">Ask in English, read the SQL, check the answer</h2>
 </div>
-<p style="font-family:'Source Serif 4', Georgia, serif;font-size:40px;font-style:italic;color:#2F5BD3">“Which countries have had the most coup attempts since 2020?”</p>
+<p style="font-family:'Source Serif 4', Georgia, serif;font-size:40px;font-style:italic;color:#2F5BD3">“Who do I write with most?”</p>
 <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px">
 <div style="display:flex;flex-direction:column;background:#14213A;border-radius:20px;padding:36px 40px;gap:4px;justify-content:center">
-<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:26px;line-height:1.5;color:#F2B632">SELECT country, COUNT(*) AS attempts,</p>
-<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:26px;line-height:1.5;color:#F5F2EA">&#160;&#160;SUM(coup = 2) AS successful</p>
-<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:26px;line-height:1.5;color:#F5F2EA">FROM events</p>
-<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:26px;line-height:1.5;color:#F5F2EA">WHERE year &gt;= 2020</p>
-<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:26px;line-height:1.5;color:#F5F2EA">GROUP BY country</p>
-<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:26px;line-height:1.5;color:#F5F2EA">ORDER BY attempts DESC, country;</p>
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:26px;line-height:1.5;color:#F2B632">SELECT a.name, COUNT(*) AS shared</p>
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:26px;line-height:1.5;color:#F5F2EA">FROM authorships s</p>
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:26px;line-height:1.5;color:#F5F2EA">JOIN authors a USING (author_id)</p>
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:26px;line-height:1.5;color:#F5F2EA">WHERE a.author_id != :me</p>
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:26px;line-height:1.5;color:#F5F2EA">GROUP BY a.author_id</p>
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:26px;line-height:1.5;color:#F5F2EA">ORDER BY shared DESC, a.name;</p>
 </div>
 <table style="font-size:28px;color:#172033">
-<tr><th style="width:50%;text-align:left">Country</th><th style="width:25%;text-align:right">Attempts</th><th style="width:25%;text-align:right">Successful</th></tr>
-<tr><td>Niger</td><td style="text-align:right">3</td><td style="text-align:right">1</td></tr>
-<tr><td>Sudan</td><td style="text-align:right">3</td><td style="text-align:right">1</td></tr>
-<tr><td>Burkina Faso</td><td style="text-align:right">2</td><td style="text-align:right">2</td></tr>
-<tr><td>Guinea-Bissau</td><td style="text-align:right">2</td><td style="text-align:right">1</td></tr>
-<tr><td>Mali</td><td style="text-align:right">2</td><td style="text-align:right">2</td></tr>
+<tr><th style="width:72%;text-align:left">Coauthor</th><th style="width:28%;text-align:right">Shared works</th></tr>
+<tr><td>Christopher Michael Faulkner</td><td style="text-align:right">3</td></tr>
+<tr><td>Sarah M. Glaser</td><td style="text-align:right">3</td></tr>
+<tr><td>Ciera Villegas</td><td style="text-align:right">2</td></tr>
+<tr><td>Colleen Devlin</td><td style="text-align:right">2</td></tr>
+<tr><td>Jonathan M. Powell</td><td style="text-align:right">2</td></tr>
 </table>
 </div>
-<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#6B7385">Real output on release V2026.08.29: 21 attempts in 14 countries since 2020. Query run 2026-10-23.</p>
-<aside>This is the moment people want to try themselves. Always show the SQL, never just the answer: the WHERE clause is where errors hide (for example, year greater than 2020 instead of greater than or equal). Then join to the papers table: “for each of these, the three newest open-access papers.” If the room is engaged, ask it to write a one-paragraph weekly brief into a markdown note, which is a Surface.</aside>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#6B7385">Real output of report.py on 2026-10-23: 11 works, 2018-2022. Works by year: 1, 2, 1, 5, 2.</p>
+<aside>Always show the SQL, never just the answer: the WHERE clause that excludes yourself is exactly the kind of line that goes missing. Follow-up questions that work well live: what did I publish in 2021 (five works), which venues, which of my works are open access. If the room is engaged, ask it to draft the publications section of an annual report as a markdown note, which is a Surface.</aside>
 </section>

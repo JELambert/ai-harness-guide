@@ -5,14 +5,15 @@
 <h2 style="font-family:'Source Serif 4', Georgia, serif;font-size:72px;font-weight:600;line-height:1.1">Start with the module card</h2>
 </div>
 <p style="font-size:32px;line-height:1.45;color:#4A5468">One short page, the same shape for every module. The harness builds from it; you review against it.</p>
+<p style="font-size:28px;line-height:1.45;color:#6B7385">First prompt: “Read the card. Tell me what you will build and what you will ask me before writing anything.”</p>
 </div>
 <div style="display:flex;flex-direction:column;background:#FFFDF8;border:1px solid #DED8C8;border-left:8px solid #C2541C;border-radius:16px;padding:48px;gap:24px">
-<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:32px;color:#C2541C;font-weight:600"># coups</p>
-<p style="font-size:28px;line-height:1.4"><b>Contract:</b> Signal. Owns <span style="color:#2F5BD3">store/coups.db</span>.</p>
-<p style="font-size:28px;line-height:1.4"><b>Gives you:</b> every coup attempt since 1950, kept current, plus new research on each case.</p>
-<p style="font-size:28px;line-height:1.4"><b>You provide:</b> nothing. Both sources are open.</p>
-<p style="font-size:28px;line-height:1.4"><b>Agent builds:</b> a fetcher, three tables, a version check, a freshness alarm.</p>
-<p style="font-size:28px;line-height:1.4"><b>Command:</b> <span style="font-family:'JetBrains Mono', 'Courier New', monospace;color:#2F5BD3">coups sync</span> · <span style="font-family:'JetBrains Mono', 'Courier New', monospace;color:#2F5BD3">coups ask</span></p>
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:32px;color:#C2541C;font-weight:600"># scholar</p>
+<p style="font-size:28px;line-height:1.4"><b>Contract:</b> Signal. Owns <span style="color:#2F5BD3">store/scholar.db</span>, feeds People.</p>
+<p style="font-size:28px;line-height:1.4"><b>You provide:</b> your name and ORCID. No account, no key.</p>
+<p style="font-size:28px;line-height:1.4"><b>Agent builds:</b> a resolve step, a sync, a People note per coauthor, an entity map, a report.</p>
+<p style="font-size:28px;line-height:1.4"><b>Never:</b> merges two people without asking.</p>
+<p style="font-size:28px;line-height:1.4"><b>Command:</b> <span style="font-family:'JetBrains Mono', 'Courier New', monospace;color:#2F5BD3">/scholar</span></p>
 </div>
-<aside>This card follows the Field Guide’s module shape: what it gives you, what you provide, what your agent builds, and the command it adds. Writing the card first is the scope step; it is also what you check the result against.</aside>
+<aside>The card is examples/scholar-footprint/start/modules/scholar.md. It follows the Field Guide module shape: contract, what you provide, what the agent builds, the command, and the rules it never breaks. Writing the card first is the scope step, and it is also the checklist for reviewing what the harness built.</aside>
 </section>

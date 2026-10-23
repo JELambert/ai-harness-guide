@@ -9,11 +9,12 @@ For this workshop, a harness is the working environment around a model: the proj
 ## Repo map
 
 - [`site/index.html`](site/index.html): participant pre-work and live handout, designed to work as a static page on Josh's website.
-- [`slides/deck/`](slides/deck/): source for the current deck, the Slides artifact "AI Harnesses for Research" (https://claude.ai/artifact/GJFD4udBmHgP163zQdaAXD, private). One HTML file per slide plus `deck.json`; speaker notes are in each slide's `<aside>`.
+- [`slides/deck/`](slides/deck/): source for the current deck, the Slides artifact "AI Harness Guide" (https://claude.ai/artifact/GJFD4udBmHgP163zQdaAXD, private). One HTML file per slide plus `deck.json`; speaker notes are in each slide's `<aside>`.
 - [`slides/mcneese-ai-harnesses.md`](slides/mcneese-ai-harnesses.md): earlier Marp deck, superseded 2026-10-23 and kept for reference.
 - [`slides/mcneese-ai-harnesses.html`](slides/mcneese-ai-harnesses.html): browser presentation, kept in this private repo for review.
 - [`slides/mcneese-ai-harnesses.pdf`](slides/mcneese-ai-harnesses.pdf): offline presentation copy.
-- [`examples/workshop-guide/`](examples/workshop-guide/): public-safe demo repository with a source brief, agenda, flawed starting draft, standing agent brief, and a tiny CSV with a duplicate row.
+- [`examples/coups-paper/`](examples/coups-paper/): Demo 1, paper to data. `start/` is the stage folder; `reference/` is a verified dry run (claim card, reproduced numbers, data drift).
+- [`examples/scholar-footprint/`](examples/scholar-footprint/): Demo 2, set up a Field Guide module. Builds a `scholar` module (OpenAlex to SQLite) plus People notes for coauthors; `reference/` is a verified dry run.
 - [`facilitator/run-of-show.md`](facilitator/run-of-show.md): two-hour teaching plan and demo checkpoints.
 - [`facilitator/source-map.md`](facilitator/source-map.md): what was adapted from the earlier crash course and BUS 751, including distribution boundaries.
 - [`PUBLISHING.md`](PUBLISHING.md): how the handout is published to JELambert.com.

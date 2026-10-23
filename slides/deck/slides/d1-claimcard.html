@@ -1,17 +1,17 @@
-<section id="d1-claimcard" style="background:#F5F2EA;color:#172033;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:48px">
+<section id="d1-claimcard" style="background:#F5F2EA;color:#172033;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
 <div style="display:flex;flex-direction:column;gap:16px">
-<p style="font-size:24px;letter-spacing:3px;text-transform:uppercase;color:#2F5BD3;font-weight:600">Step 2 · What comes back</p>
+<p style="font-size:24px;letter-spacing:3px;text-transform:uppercase;color:#2F5BD3;font-weight:600">Step 2 · What came back</p>
 <h2 style="font-family:'Source Serif 4', Georgia, serif;font-size:72px;font-weight:600;line-height:1.1">The claim card</h2>
 </div>
-<table style="font-size:28px;color:#172033">
-<tr><th style="width:22%;text-align:left">Field</th><th style="width:58%;text-align:left">What the paper says</th><th style="width:20%;text-align:left">Source</th></tr>
-<tr><td style="color:#6B7385">Claim</td><td>After coups in autocracies, new autocracies and more repression are more common than democracy</td><td>Abstract</td></tr>
-<tr><td style="color:#6B7385">Coups</td><td>Powell and Thyne coup events</td><td>[p. __]</td></tr>
-<tr><td style="color:#6B7385">Regimes</td><td>Geddes, Wright and Frantz autocratic regimes</td><td>[p. __]</td></tr>
-<tr><td style="color:#6B7385">Repression</td><td>Latent human-rights scores (Fariss)</td><td>[p. __]</td></tr>
-<tr><td style="color:#6B7385">Unit, years, N</td><td>[filled live]</td><td>[p. __]</td></tr>
-<tr style="background:#EEF1FB"><td style="color:#2F5BD3;font-weight:600">Not found</td><td>Anything the tool could not locate, said plainly</td><td>none</td></tr>
+<table style="font-size:26px;color:#172033">
+<tr><th style="width:20%;text-align:left">Field</th><th style="width:58%;text-align:left">What the paper says</th><th style="width:22%;text-align:left">Where</th></tr>
+<tr><td style="color:#6B7385">Claim</td><td>Coups against dictators more often install new autocrats, and more repression, than democracy</td><td>Abstract</td></tr>
+<tr><td style="color:#6B7385">Data</td><td>Powell and Thyne coups; Geddes, Wright and Frantz regimes; Fariss repression</td><td>Fn 3, 5; §4</td></tr>
+<tr><td style="color:#6B7385">Sample</td><td>All autocratic regime-years, 285 dictatorships, 1950-2015</td><td>§3</td></tr>
+<tr><td style="color:#6B7385">Model</td><td>Linear, regime-case and year fixed effects</td><td>§3</td></tr>
+<tr><td style="color:#6B7385">Testable</td><td>48% of coup attempts failed in the Cold War, 63% after</td><td>§3</td></tr>
+<tr style="background:#EEF1FB"><td style="color:#2F5BD3;font-weight:600">Not found</td><td>Which coups count toward that 48% and 63%</td><td>Not stated</td></tr>
 </table>
-<p style="font-size:32px;color:#4A5468">Check one row against the PDF out loud. That is the habit.</p>
-<aside>Data sources are inferred from the files in the replication archive (powell_thyne_coups_final.txt, GWF regime files, fariss_original.tab). Confirm against the paper text at rehearsal and fill the bracketed page numbers and unit, years and N from what the harness actually returns. Never present the bracketed cells as filled.</aside>
+<p style="font-size:30px;color:#4A5468">The “not found” row is the most useful line on the card. It becomes our test.</p>
+<aside>This is the real output of the dry run on 2026-10-23, built from the HTML full text on journals.sagepub.com. The HTML has no page numbers, so cites are to sections (§3 is Coups and regime change, §4 is Coups and repression). Friction to narrate: SAGE returns HTTP 403 to scripted PDF downloads, so the harness reads the HTML version; download the PDFs by hand before the session. Full card: examples/coups-paper/reference/notes/claim-card.md.</aside>
 </section>
