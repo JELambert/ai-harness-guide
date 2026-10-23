@@ -1,34 +1,32 @@
 # AI Harness Guide
 
-A two-hour, beginner-friendly workshop for McNeese faculty and staff. It introduces AI harnesses through a guided demonstration, with optional setup and practice. The public-facing handout is a standalone static HTML file at [`site/index.html`](site/index.html).
+Materials from a McNeese faculty and staff workshop on AI harnesses: tools like Claude Code and Codex that work inside a folder on your computer instead of a chat window.
 
-## What is an AI harness?
+**The idea: put your work in one folder, and let an AI harness work across all of it.** An email, a syllabus, a paper, a spreadsheet: once they sit in one folder, the harness can read them together, draft what you need, and show you exactly what it changed. You check it, and you decide.
 
-For this workshop, a harness is the working environment around a model: the project files it can inspect, the tools it may use, the instructions and permissions that guide it, and the human verification that closes the loop. Claude Code and Codex are two examples. The workshop is about the transferable workflow, not choosing a winner.
+## What is here
 
-## Repo map
+| File | What it is |
+| --- | --- |
+| [`slides.html`](slides.html) | The workshop deck. Download and open in any browser. Arrow keys to move, `f` for full screen. |
+| [`handout.html`](handout.html) | The participant handout and setup links. |
+| [`prompts.md`](prompts.md) | Every prompt from the session, ready to paste. |
+| [`AGENTS.md`](AGENTS.md) | The standing brief the harness reads every time it opens this folder. `CLAUDE.md` points to it, so Claude Code and Codex share one brief. |
+| [`semester/`](semester/) | A sample faculty folder to practice on. Everything in it is synthetic or open access. |
 
-- [`site/index.html`](site/index.html): participant pre-work and live handout, designed to work as a static page on Josh's website.
-- [`slides/deck/`](slides/deck/): source for the current deck, the Slides artifact "AI Harness Guide" (https://claude.ai/artifact/GJFD4udBmHgP163zQdaAXD, private). One HTML file per slide plus `deck.json`; speaker notes are in each slide's `<aside>`.
-- [`slides/mcneese-ai-harnesses.md`](slides/mcneese-ai-harnesses.md): earlier Marp deck, superseded 2026-10-23 and kept for reference.
-- [`slides/mcneese-ai-harnesses.html`](slides/mcneese-ai-harnesses.html): browser presentation, kept in this private repo for review.
-- [`slides/mcneese-ai-harnesses.pdf`](slides/mcneese-ai-harnesses.pdf): offline presentation copy.
-- [`facilitator/mission-and-plan.md`](facilitator/mission-and-plan.md): the mission (one folder, one harness), session shape, and build list. Demos are being rebuilt around `examples/my-semester/`.
-- [`facilitator/run-of-show.md`](facilitator/run-of-show.md): two-hour teaching plan and demo checkpoints.
-- [`facilitator/source-map.md`](facilitator/source-map.md): what was adapted from the earlier crash course and BUS 751, including distribution boundaries.
-- [`PUBLISHING.md`](PUBLISHING.md): how the handout is published to JELambert.com.
+## Try it
 
-## Preview
+1. Install [Claude Code](https://code.claude.com/docs/en/quickstart) or the [Codex app](https://developers.openai.com/codex/app) and sign in.
+2. Download this folder (green **Code** button, then **Download ZIP**) and unzip it.
+3. Open the harness in the folder, and paste the first prompt from [`prompts.md`](prompts.md).
+4. Run `semester/research/get-paper.sh` once (or ask the harness to) to download the reading.
 
-Open `site/index.html` in a browser. It has no build step, external fonts, tracking, or runtime dependency. For a local HTTP preview, run `python3 -m http.server 8769 --directory site` and visit `http://127.0.0.1:8769/`.
+When it writes something, read it before you trust it. That part stays yours.
 
-Open `slides/mcneese-ai-harnesses.html` for a full-screen browser deck, or use the PDF offline. To regenerate both exports after editing the Markdown source:
+## Next step
 
-```bash
-marp --html slides/mcneese-ai-harnesses.md -o slides/mcneese-ai-harnesses.html
-marp slides/mcneese-ai-harnesses.md -o slides/mcneese-ai-harnesses.pdf
-```
+Make your own folder for one real piece of work, ask the harness to write its brief, and give it one task with one thing you will check. When that works, grow it: one larger folder holding your repositories, notes, PDFs and data, so the harness can connect all of it. The [Almanac Field Guide](https://github.com/JELambert/almanac-field-guide) is one way to build that.
 
-## Editorial state
+## Before you use your own files
 
-This is a private working repo. The participant handout is live at https://jelambert.com/ai-harness-guide/. The slides remain here for Josh's review and are not published to the website. Course-specific policies, pricing, and account eligibility must be checked with McNeese before distribution.
+Keep student records, human-subjects data, and anything held in confidence out of the folder unless your institution's policy and an approved tool allow it.

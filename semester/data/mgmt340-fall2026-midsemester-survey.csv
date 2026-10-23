@@ -1,0 +1,48 @@
+response_id,submitted,section,pace_right,clarity,workload,used_ai_tools,comment
+R1001,2026-10-14,001,4,3,4,No,The A/B testing week clicked for me.
+R1002,2026-10-09,001,4,4,4,No,
+R1003,2026-10-09,001,3,5,5,Yes,
+R1004,2026-10-10,001,4,2,2,Yes,
+R1005,2026-10-09,001,3,4,3,Yes,
+R1006,2026-10-13,001,3,4,4,No,I like the weekly exercises.
+R1007,2026-10-05,001,4,3,5,Yes,I like the weekly exercises.
+R1008,2026-10-06,001,4,4,3,No,
+R1009,2026-10-06,001,3,2,5,No,Clear expectations.
+R1010,2026-10-05,001,5,4,3,No,Clear expectations.
+R1010,2026-10-05,001,5,4,3,No,Clear expectations.
+R1011,2026-10-06,001,5,5,2,No,
+R1012,2026-10-07,001,5,4,2,Yes,I like the weekly exercises.
+R1013,2026-10-08,001,4,4,3,No,More practice problems before the midterm please.
+R1014,2026-10-07,001,5,4,2,No,Clear expectations.
+R1015,2026-10-07,001,4,5,3,Yes,"Good pace, the examples help."
+R1016,2026-10-15,001,4,3,3,Yes,The A/B testing week clicked for me.
+R1017,2026-10-07,001,3,4,3,No,Sometimes slides move fast but fine overall.
+R1018,2026-10-05,001,3,4,2,No,"Good pace, the examples help."
+R1019,2026-10-12,001,4,5,2,No,Sometimes slides move fast but fine overall.
+,,,,,,,
+R1020,2026-10-11,001,2,4,4,No,
+R1021,2026-10-12,001,5,5,5,Yes,The A/B testing week clicked for me.
+R1022,2026-10-13,001,4,5,3,No,I like the weekly exercises.
+R1023,2026-10-13,001,4,4,4,No,Clear expectations.
+R1024,2026-10-15,001,4,4,3,No,"Good pace, the examples help."
+R1025,2026-10-09,001,4,5,4,No,Clear expectations.
+R1026,2026-10-14,001,3,4,5,Yes,
+R1027,2026-10-16,002,3,4,3,Yes,The regression weeks went way too fast.
+R1028,2026-10-07,002,2,4,2,No,Would like recordings of the evening class.
+R1029,2026-10-15,002,3,5,5,No,"Too much in one night, hard to keep up after work."
+R1030,2026-10-16,002,3,3,4,No,Pace is rough when we miss a week.
+R1031,2026-10-16,002,2,4,3,Yes,Pace is rough when we miss a week.
+R1032,2026-10-16,002,2,4,5,No,Good instructor but we rush the end of every class.
+R1030,2026-10-16,002,3,3,4,No,Pace is rough when we miss a week.
+R1033,2026-10-08,002,1,4,2,Yes,Would like recordings of the evening class.
+R1034,2026-10-05,002,2,3,2,No,Pace is rough when we miss a week.
+R1035,2026-10-16,002,2,3,3,No,
+R1036,2026-10-07,002,2,2,4,Yes,Pace is rough when we miss a week.
+R1037,2026-10-08,002,1,4,3,No,"Too much in one night, hard to keep up after work."
+R1038,2026-10-07,002,4,4,3,No,Good instructor but we rush the end of every class.
+R1039,2026-10-12,002,3,4,4,Yes,The regression weeks went way too fast.
+R1040,2026-10-08,002,3,3,4,Yes,Would like recordings of the evening class.
+R1041,2026-10-16,002,2,5,3,Yes,"Too much in one night, hard to keep up after work."
+R1042,2026-10-13,002,3,2,3,No,
+R1043,2026-10-06,002,2,4,2,No,
+R1044,2026-10-12,002,4,4,2,Yes,Good instructor but we rush the end of every class.

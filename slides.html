@@ -1,0 +1,470 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Harness Guide</title>
+<style>
+  :root {
+    --paper: #F5F2EA; --card: #FFFDF8; --line: #DED8C8; --ink: #172033; --muted: #4A5468;
+    --faint: #6B7385; --night: #14213A; --night-2: #0E1829; --soft: #C9D3E6;
+    --gold: #F2B632; --blue: #2F5BD3; --orange: #C2541C; --pale: #EEF1FB;
+    --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+    --sans: "Avenir Next", "Segoe UI", system-ui, -apple-system, Helvetica, Arial, sans-serif;
+    --mono: "SF Mono", Menlo, Consolas, "Courier New", monospace;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; background: #0B1220; overflow: hidden; }
+  body { font-family: var(--sans); color: var(--ink); }
+  #deck { position: absolute; left: 50%; top: 50%; width: 1920px; height: 1080px; transform-origin: center; }
+  .slide { position: absolute; inset: 0; display: none; flex-direction: column; gap: 48px;
+    padding: 120px 128px 150px; background: var(--paper); overflow: hidden; }
+  .slide.active { display: flex; }
+  .slide.dark { background: var(--night); color: #F5F2EA; }
+  .slide.gold { background: var(--gold); color: var(--ink); }
+  .center { justify-content: center; }
+  .spread { justify-content: space-between; }
+
+  .eyebrow { font-size: 26px; letter-spacing: 4px; text-transform: uppercase; font-weight: 600; color: var(--blue); }
+  .dark .eyebrow { color: var(--gold); }
+  .gold .eyebrow { color: var(--ink); }
+  h1 { font-family: var(--serif); font-weight: 600; font-size: 120px; line-height: 1.04; letter-spacing: -2px; }
+  h1.xl { font-size: 156px; letter-spacing: -3px; }
+  h2 { font-family: var(--serif); font-weight: 600; font-size: 76px; line-height: 1.08; letter-spacing: -1px; }
+  h3 { font-size: 36px; font-weight: 600; line-height: 1.2; }
+  p { font-size: 34px; line-height: 1.45; }
+  .lede { font-size: 44px; line-height: 1.35; color: var(--muted); max-width: 1500px; }
+  .dark .lede, .dark p.soft { color: var(--soft); }
+  .muted { color: var(--muted); }
+  .small { font-size: 26px; color: var(--faint); }
+  .dark .small { color: #8C9AB5; }
+  b.hl { color: var(--blue); }
+  .dark b.hl { color: var(--gold); }
+  .head { display: flex; flex-direction: column; gap: 18px; }
+  .row { display: flex; gap: 32px; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; }
+  .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+  .grow { flex: 1; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 20px; padding: 40px; display: flex; flex-direction: column; gap: 16px; }
+  .card p { font-size: 30px; color: var(--muted); }
+  .dark .card { background: #1C2C4A; border-color: #2C3E62; }
+  .dark .card p { color: var(--soft); }
+  .rule { border-top: 4px solid var(--gold); padding-top: 28px; display: flex; flex-direction: column; gap: 14px; }
+  .rule h3 { color: var(--gold); font-size: 40px; }
+  .rule p { color: var(--soft); font-size: 30px; }
+  .code { background: var(--night); color: #F5F2EA; border-radius: 20px; padding: 40px 48px; font-family: var(--mono); font-size: 28px; line-height: 1.6; white-space: pre; }
+  .code .k { color: var(--gold); }
+  .code .c { color: #8C9AB5; }
+  table { border-collapse: collapse; width: 100%; font-size: 32px; }
+  th { text-align: left; padding: 18px 20px; border-bottom: 2px solid var(--ink); }
+  td { padding: 18px 20px; border-bottom: 1px solid #C9C2B0; }
+  td.label { color: var(--faint); }
+  .footer { position: absolute; left: 128px; right: 128px; bottom: 56px; display: flex; justify-content: space-between; font-size: 22px; color: var(--faint); }
+  .dark .footer { color: #8C9AB5; }
+  .gold .footer { color: #5A4A1A; }
+
+  /* vignette layout: into the folder, you say, it writes */
+  .slide.vigslide { padding: 92px 128px 118px; gap: 28px; }
+  .vigslide h2 { font-size: 62px; }
+  .vigslide .head { gap: 12px; }
+  .vig { display: grid; grid-template-columns: 430px 1fr 1fr; gap: 36px; flex: 1; min-height: 0; }
+  .col { display: flex; flex-direction: column; gap: 18px; min-height: 0; }
+  .col-label { font-size: 22px; letter-spacing: 3px; text-transform: uppercase; font-weight: 600; color: var(--faint); }
+  .file { display: flex; align-items: center; gap: 16px; background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 18px 22px; font-family: var(--mono); font-size: 25px; }
+  .file i { font-style: normal; font-family: var(--sans); font-size: 18px; font-weight: 700; color: #fff; background: var(--blue); border-radius: 6px; padding: 4px 8px; }
+  .file i.eml { background: var(--orange); } .file i.csv { background: #2F8A5B; } .file i.pdf { background: #A23B3B; } .file i.doc { background: var(--blue); } .file i.txt { background: var(--faint); }
+  .say { background: var(--pale); border-left: 8px solid var(--blue); border-radius: 14px; padding: 32px 36px; font-family: var(--serif); font-size: 34px; line-height: 1.4; font-style: italic; }
+  .out { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 26px 30px; display: flex; flex-direction: column; gap: 10px; font-size: 24px; line-height: 1.45; overflow: hidden; }
+  .out p { font-size: 27px; line-height: 1.4; }
+  .dark .out p { font-size: 30px; }
+  .out .fname { font-family: var(--mono); font-size: 21px; color: var(--faint); border-bottom: 1px solid var(--line); padding-bottom: 10px; }
+  .out .t { font-weight: 600; font-size: 27px; }
+  .out .flag { color: var(--orange); font-weight: 600; }
+  .out .ok { color: #2F8A5B; font-weight: 600; }
+  .check { display: flex; gap: 20px; align-items: baseline; font-size: 30px; padding: 22px 30px; background: var(--night); color: #F5F2EA; border-radius: 14px; }
+  .check b { color: var(--gold); letter-spacing: 2px; text-transform: uppercase; font-size: 24px; }
+  .bars { display: flex; flex-direction: column; gap: 14px; }
+  .bar { display: grid; grid-template-columns: 170px 1fr 70px; align-items: center; gap: 14px; font-size: 23px; }
+  .bar span.b { height: 34px; border-radius: 6px; }
+
+  /* tree */
+  .tree { font-family: var(--mono); font-size: 26px; line-height: 1.65; white-space: pre; background: var(--night); color: #F5F2EA; border-radius: 20px; padding: 44px 52px; }
+  .tree .d { color: var(--gold); } .tree .c { color: #8C9AB5; }
+
+  #nav { display: none; }
+  @media print {
+    @page { size: 1920px 1080px; margin: 0; }
+    html, body { overflow: visible; background: none; height: auto; }
+    #deck { position: static; transform: none !important; width: 1920px; height: auto; }
+    .slide { display: flex !important; position: relative; width: 1920px; height: 1080px; page-break-after: always; break-after: page; }
+    #nav { display: none; }
+  }
+</style>
+</head>
+<body>
+<div id="deck">
+
+<!-- 1 -->
+<section class="slide dark spread">
+  <p class="eyebrow">McNeese faculty and staff workshop</p>
+  <div class="head" style="gap:36px">
+    <h1 class="xl">AI Harness Guide</h1>
+    <p class="lede">Working with AI tools that can see your files, do real work in them, and show you what they changed.</p>
+  </div>
+  <div class="row" style="align-items:center;gap:24px"><span style="width:96px;height:6px;background:var(--gold)"></span><p style="font-size:32px">Joshua E. Lambert</p></div>
+</section>
+
+<!-- 2 -->
+<section class="slide center">
+  <p class="eyebrow">Before we start</p>
+  <h1>What would you hand to an assistant, if it could see your files?</h1>
+  <p class="lede">A recurring task, a messy folder, a question you keep putting off. Hold onto it. We will try a few live at the end.</p>
+</section>
+
+<!-- 3 -->
+<section class="slide">
+  <div class="head"><p class="eyebrow">The ceiling</p><h2>A chat window only sees what you paste</h2></div>
+  <div class="grid3" style="flex:1">
+    <div class="card"><h3>You copy in</h3><p>The email, the syllabus, the spreadsheet: one at a time, by hand.</p></div>
+    <div class="card"><h3>It forgets</h3><p>Next conversation, you explain your course and your rules all over again.</p></div>
+    <div class="card"><h3>You copy out</h3><p>Then paste the answer back into Word, Outlook, or Excel and hope nothing broke.</p></div>
+  </div>
+  <p class="muted">The work you actually do lives across a dozen apps. The chat window lives in none of them.</p>
+</section>
+
+<!-- 4 -->
+<section class="slide gold center">
+  <p class="eyebrow">The idea for today</p>
+  <h1 class="xl">One folder.<br>One harness.</h1>
+  <p class="lede" style="color:var(--ink)">Put your work in one folder, and let an AI harness work across all of it.</p>
+</section>
+
+<!-- 5 -->
+<section class="slide">
+  <div class="grid2" style="grid-template-columns:860px 1fr;align-items:center;flex:1">
+    <div style="position:relative;width:860px;height:720px">
+      <div style="position:absolute;inset:0;border:3px dashed var(--blue);border-radius:48px;background:var(--pale)"></div>
+      <p class="eyebrow" style="position:absolute;left:44px;top:32px">The harness</p>
+      <div style="position:absolute;left:290px;top:270px;width:280px;height:170px;background:var(--night);border-radius:24px;display:flex;align-items:center;justify-content:center"><p style="font-family:var(--serif);font-size:54px;color:#F5F2EA">Model</p></div>
+      <p class="card" style="position:absolute;left:56px;top:110px;width:320px;padding:22px 26px;font-size:30px">Your folder</p>
+      <p class="card" style="position:absolute;left:484px;top:110px;width:320px;padding:22px 26px;font-size:30px">A standing brief</p>
+      <p class="card" style="position:absolute;left:56px;top:520px;width:320px;padding:22px 26px;font-size:30px">Tools it can run</p>
+      <p class="card" style="position:absolute;left:484px;top:520px;width:320px;padding:22px 26px;font-size:30px">Limits you set</p>
+      <p style="position:absolute;left:250px;top:640px;width:360px;padding:12px 24px;background:var(--gold);border-radius:14px;font-size:30px;font-weight:600;text-align:center">You decide</p>
+    </div>
+    <div class="head" style="gap:36px">
+      <h2>A model is an engine. A harness is the car.</h2>
+      <p class="muted">The <b style="color:var(--ink)">model</b> writes and reasons. The <b style="color:var(--ink)">harness</b> gives it a desk: your files, your rules, tools to use, and things it may not do.</p>
+      <p class="muted">Claude Code and Codex are two harnesses. Everything today works in both.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 6 -->
+<section class="slide">
+  <div class="head"><p class="eyebrow">Same model, different desk</p><h2>Chat window versus harness</h2></div>
+  <table>
+    <tr><th style="width:22%"></th><th style="width:39%">Chat window</th><th style="width:39%;color:var(--blue)">Harness</th></tr>
+    <tr><td class="label">Sees</td><td>What you paste</td><td>Everything in the folder</td></tr>
+    <tr><td class="label">Remembers</td><td>This conversation</td><td>A brief that lives in the folder</td></tr>
+    <tr><td class="label">Produces</td><td>Text to copy out</td><td>Real files: notes, drafts, charts</td></tr>
+    <tr><td class="label">Connects</td><td>One thing at a time</td><td>The email to the syllabus to the data</td></tr>
+    <tr><td class="label">Shows its work</td><td>Rarely</td><td>Which files it read and what it changed</td></tr>
+  </table>
+</section>
+
+<!-- 7 -->
+<section class="slide">
+  <div class="grid2" style="grid-template-columns:1fr 1fr;flex:1;align-items:center">
+    <div class="head" style="gap:32px">
+      <p class="eyebrow">The standing brief</p>
+      <h2>Tell it once. It reads it every time.</h2>
+      <p class="muted">A plain text file at the top of the folder: what this is, how you work, what it must never do. Claude Code reads <b style="color:var(--ink)">CLAUDE.md</b>, Codex reads <b style="color:var(--ink)">AGENTS.md</b>. This folder uses one for both.</p>
+      <p class="small">Do not write it by hand. Tell the harness what matters and let it write the file. Caught yourself explaining something twice? “Add that to the brief.”</p>
+    </div>
+    <div class="code"><span class="c"># AGENTS.md (from this folder)</span>
+<span class="k">## How to work here</span>
+- Read the files before answering.
+  Say which files you used.
+- Write new work to semester/notes/.
+  Never edit the originals.
+- Every date and number points
+  to the file it came from.
+- If something is unclear, say so.
+- Draft emails as files.
+  <span class="k">Never send anything.</span></div>
+  </div>
+</section>
+
+<!-- 8 -->
+<section class="slide">
+  <div class="head"><p class="eyebrow">How to talk to it</p><h2>More words, not fewer</h2></div>
+  <div class="grid2" style="gap:48px">
+    <div class="card"><h3>Be specific</h3><p>Name the file, the outcome, the format, the deadline.</p></div>
+    <div class="card"><h3>Think out loud</h3><p>Include the parts you are unsure about. Long and meandering beats short and clipped.</p></div>
+    <div class="card"><h3>Speak, don’t type</h3><p>Talking gets more words out than typing, and forces you to say what you actually mean.</p></div>
+    <div class="card"><h3>Ask for pushback</h3><p>“What am I missing?” and “Check this against the files” make the answer better.</p></div>
+  </div>
+</section>
+
+<!-- 9 -->
+<section class="slide gold center">
+  <h1 class="xl">AI drafts.<br>You decide.</h1>
+  <p class="lede" style="color:var(--ink)">It does the first pass. You check it, change it, and you are the one who sends it.</p>
+</section>
+
+<!-- 10 -->
+<section class="slide">
+  <div class="grid2" style="flex:1;align-items:center;gap:96px">
+    <div class="head" style="gap:32px">
+      <p class="eyebrow">Git and GitHub</p>
+      <h1 style="font-size:104px">Which file is really final?</h1>
+      <p class="muted">Filenames cannot tell you what changed, who changed it, or how to get the old one back. Once an AI starts editing your files, that matters more.</p>
+    </div>
+    <div class="col" style="gap:20px">
+      <p class="file" style="font-size:30px">syllabus_final.docx</p>
+      <p class="file" style="font-size:30px;transform:translateX(32px)">syllabus_final_v2.docx</p>
+      <p class="file" style="font-size:30px;transform:translateX(64px)">syllabus_final_Pat_edits.docx</p>
+      <p class="file" style="font-size:30px;transform:translateX(96px);background:var(--night);color:var(--gold)">syllabus_USE_THIS.docx</p>
+    </div>
+  </div>
+</section>
+
+<!-- 11 -->
+<section class="slide dark">
+  <div class="head"><p class="eyebrow">Git is the harness’s undo button</p><h2>Three words, then let it drive</h2></div>
+  <div class="grid3" style="gap:48px">
+    <div class="rule"><h3>Repository</h3><p>A folder that remembers its own history.</p></div>
+    <div class="rule"><h3>Commit</h3><p>A named save point for the whole folder, with a reason.</p></div>
+    <div class="rule"><h3>Diff</h3><p>Exactly which lines changed between two save points.</p></div>
+  </div>
+  <p class="soft" style="font-size:34px">You never type the commands. You say <b class="hl">“commit this”</b> or <b class="hl">“undo what you just did.”</b> GitHub is the shared, backed-up copy, so keep it <b class="hl">private</b> unless it is meant to be public.</p>
+</section>
+
+<!-- 12 -->
+<section class="slide">
+  <div class="grid2" style="grid-template-columns:1fr 960px;flex:1;align-items:center">
+    <div class="head" style="gap:32px">
+      <p class="eyebrow">Live</p>
+      <h2>This repository is the folder</h2>
+      <p class="muted">Everything today happens in the folder you can download. A sample semester for a fictional instructor, Dr. Sam Rivera, teaching MGMT 340.</p>
+      <p class="small">All of it is synthetic or open access. Nothing private on screen.</p>
+    </div>
+    <div class="tree"><span class="d">ai-harness-guide/</span>
+  AGENTS.md      <span class="c">the brief</span>
+  slides.html    <span class="c">this deck</span>
+  prompts.md     <span class="c">every prompt today</span>
+  <span class="d">semester/</span>
+    <span class="d">inbox/</span>      <span class="c">an email from the chair</span>
+    <span class="d">teaching/</span>   <span class="c">catalog, old syllabus, calendar</span>
+    <span class="d">research/</span>   <span class="c">an open-access paper</span>
+    <span class="d">data/</span>       <span class="c">a course survey export</span>
+    <span class="d">notes/</span>      <span class="c">where it writes</span></div>
+  </div>
+</section>
+
+<!-- 13: vignette 1 -->
+<section class="slide vigslide">
+  <div class="head"><p class="eyebrow">1 · An email</p><h2>What is being asked of me, and by when?</h2></div>
+  <div class="vig">
+    <div class="col"><p class="col-label">Into the folder</p>
+      <p class="file"><i class="eml">EML</i>chair-spring-requests.eml</p>
+      <p class="small" style="font-size:24px">Saved from Outlook or Gmail with “Save as” or drag and drop.</p></div>
+    <div class="col"><p class="col-label">You say</p>
+      <p class="say">“Read the email from Pat. List every request and its deadline, then draft a reply confirming. Don’t send anything.”</p></div>
+    <div class="col"><p class="col-label">It writes</p>
+      <div class="out"><p class="fname">notes/chair-requests.md</p>
+        <p><b>1.</b> Spring syllabus · <b>Fri Nov 13</b></p>
+        <p><b>2.</b> Survey summary, 1 paragraph + 1 figure · <b>Fri Nov 20</b></p>
+        <p><b>3.</b> One open-access reading · with the syllabus</p>
+        <p><b>4.</b> Flag any date problems · <b>this week</b></p>
+        <p class="fname" style="border-top:1px solid var(--line);border-bottom:none;padding-top:10px">+ notes/reply-to-pat-draft.md <span class="flag">DRAFT, not sent</span></p></div></div>
+  </div>
+  <div class="check"><b>Check</b><span>Every ask and date traces back to a line in the email.</span></div>
+</section>
+
+<!-- 14: vignette 2 -->
+<section class="slide vigslide">
+  <div class="head"><p class="eyebrow">2 · A syllabus</p><h2>Build the spring syllabus that email asked for</h2></div>
+  <div class="vig">
+    <div class="col"><p class="col-label">Into the folder</p>
+      <p class="file"><i class="doc">DOCX</i>syllabus-spring-2026</p>
+      <p class="file"><i class="txt">TXT</i>catalog-description</p>
+      <p class="file"><i class="txt">TXT</i>calendar-spring-2027</p></div>
+    <div class="col"><p class="col-label">You say</p>
+      <p class="say">“Update last spring’s syllabus for spring 2027 using the calendar and what Pat asked for. Flag anything I need to decide.”</p></div>
+    <div class="col"><p class="col-label">It writes</p>
+      <div class="out"><p class="fname">notes/MGMT340-spring-2027.docx</p>
+        <p><span class="ok">Done</span> Dates moved to the 2027 calendar</p>
+        <p><span class="ok">Done</span> AI statement pasted as written</p>
+        <p><span class="ok">Done</span> Week 12: How AI is changing work</p>
+        <p><span class="flag">Decide</span> Midterm fell on Fri Mar 5, the day midterm grades are due</p>
+        <p><span class="flag">Decide</span> Mardi Gras cancels the Tuesday evening class on Feb 9</p></div></div>
+  </div>
+  <div class="check"><b>Check</b><span>Spot-check three dates against the calendar. Read every flag yourself.</span></div>
+</section>
+
+<!-- 15: vignette 3 -->
+<section class="slide vigslide">
+  <div class="head"><p class="eyebrow">3 · A paper</p><h2>Turn a reading into a note, linked to the course</h2></div>
+  <div class="vig">
+    <div class="col"><p class="col-label">Into the folder</p>
+      <p class="file"><i class="pdf">PDF</i>eloundou-2023-gpts-are-gpts</p>
+      <p class="small" style="font-size:24px">Eloundou, Manning, Mishkin and Rock, “GPTs are GPTs” (2023), open access on arXiv.</p></div>
+    <div class="col"><p class="col-label">You say</p>
+      <p class="say">“Write a reading note on this paper for my students, and link it to the week it fits in the new syllabus.”</p></div>
+    <div class="col"><p class="col-label">It writes</p>
+      <div class="out"><p class="fname">notes/reading-eloundou-2023.md</p>
+        <p class="t">Main finding</p>
+        <p>About 80% of US workers could have at least 10% of their tasks affected by large language models; about 19% could see at least half. <span class="small" style="font-size:21px">(p. 1)</span></p>
+        <p class="t">Fits</p>
+        <p>Week 12, How AI is changing work · <span style="color:var(--blue)">[[MGMT340-spring-2027]]</span></p></div></div>
+  </div>
+  <div class="check"><b>Check</b><span>Open the PDF to the cited page and find the number yourself.</span></div>
+</section>
+
+<!-- 16: vignette 4 -->
+<section class="slide vigslide">
+  <div class="head"><p class="eyebrow">4 · A spreadsheet</p><h2>Did students feel the pace was right?</h2></div>
+  <div class="vig">
+    <div class="col"><p class="col-label">Into the folder</p>
+      <p class="file"><i class="csv">CSV</i>midsemester-survey</p>
+      <p class="small" style="font-size:24px">Exported from the survey tool. 47 rows, one blank, two duplicate submissions.</p></div>
+    <div class="col"><p class="col-label">You say</p>
+      <p class="say">“Summarize this survey for the committee: one paragraph and one chart. Tell me what you cleaned before you counted.”</p></div>
+    <div class="col"><p class="col-label">It writes</p>
+      <div class="out"><p class="fname">notes/survey-summary.md + pace-by-section.png</p>
+        <p>Removed 1 blank row and 2 duplicates: <b>44 responses</b>.</p>
+        <p class="t">“The pace felt right” (1 to 5)</p>
+        <div class="bars">
+          <div class="bar"><span>Day (001)</span><span class="b" style="background:var(--blue);width:77%"></span><span><b>3.85</b></span></div>
+          <div class="bar"><span>Evening (002)</span><span class="b" style="background:var(--orange);width:49%"></span><span><b>2.44</b></span></div>
+        </div>
+        <p>10 of 18 evening students rated pace 2 or lower.</p></div></div>
+  </div>
+  <div class="check"><b>Check</b><span>Count the rows yourself, and recompute one average by hand.</span></div>
+</section>
+
+<!-- 17: vignette 5 -->
+<section class="slide dark">
+  <div class="head"><p class="eyebrow">5 · The payoff</p><h2>“What do I owe whom this week, and what is ready?”</h2></div>
+  <div class="grid2" style="grid-template-columns:1.25fr 1fr;flex:1">
+    <div class="out" style="background:#FFFDF8;color:var(--ink)"><p class="fname">notes/this-week.md</p>
+      <p><span class="ok">Ready</span> Spring syllabus for Pat, due Nov 13 · <span style="color:var(--faint)">notes/MGMT340-spring-2027.docx</span></p>
+      <p><span class="ok">Ready</span> Reading citation, goes with the syllabus · <span style="color:var(--faint)">notes/reading-eloundou-2023.md</span></p>
+      <p><span class="ok">Ready</span> Survey summary, due Nov 20 · <span style="color:var(--faint)">notes/survey-summary.md</span></p>
+      <p><span class="flag">This week</span> Tell Pat about the midterm and Mardi Gras dates. Your reply draft does not mention them yet.</p></div>
+    <div class="head" style="gap:28px;justify-content:center">
+      <p class="soft" style="font-size:36px">No single file could answer this. It took the email, the calendar, the syllabus and the survey together.</p>
+      <p style="font-size:36px"><b class="hl">That is the point of one folder.</b></p>
+    </div>
+  </div>
+</section>
+
+<!-- 18 -->
+<section class="slide">
+  <div class="head"><p class="eyebrow">Beyond files</p><h2>The folder can also reach out</h2></div>
+  <div class="grid2" style="gap:48px;flex:1">
+    <div class="card"><h3>Connectors</h3><p>Claude and Codex can connect to Gmail, Google Drive, calendars and more, so you can ask “what did Pat send this week?” without saving anything first.</p></div>
+    <div class="card"><h3>Start read-only</h3><p>Let it read before you let it act. Anything that sends, deletes, books or buys stays your click.</p></div>
+  </div>
+  <p class="muted">Files first is the safe default: you choose exactly what goes in the folder.</p>
+</section>
+
+<!-- 19 -->
+<section class="slide">
+  <div class="grid2" style="grid-template-columns:1fr 920px;flex:1;align-items:center">
+    <div class="head" style="gap:32px">
+      <p class="eyebrow">Where it grows</p>
+      <h2>One big folder, a growing network of context</h2>
+      <p class="muted">Start with one folder for one semester. Over time, put everything under one roof: your Git repositories, your Obsidian notes, your PDFs, your diagrams. Open the harness at the top, and it can connect all of it.</p>
+      <p class="small">This is how I run my own work: the Almanac Field Guide, github.com/JELambert/almanac-field-guide</p>
+    </div>
+    <div class="tree"><span class="d">my-work/</span>              <span class="c">open the harness here</span>
+  AGENTS.md
+  <span class="d">repos/</span>
+    <span class="d">course-mgmt340/</span>   <span class="c">a Git repo</span>
+    <span class="d">paper-draft/</span>      <span class="c">a Git repo</span>
+  <span class="d">vault/</span>              <span class="c">Obsidian notes</span>
+    <span class="d">People/</span>  <span class="d">Projects/</span>  <span class="d">Daily/</span>
+  <span class="d">library/</span>            <span class="c">PDFs</span>
+  <span class="d">diagrams/</span>
+  <span class="d">data/</span></div>
+  </div>
+</section>
+
+<!-- 20 -->
+<section class="slide">
+  <div class="grid2" style="flex:1;gap:96px">
+    <div class="head" style="gap:32px">
+      <p class="eyebrow" style="color:var(--orange)">Before you try this at work</p>
+      <h2>Today was synthetic on purpose</h2>
+      <p class="muted">Your own folder often is not. Decide what goes in it before the harness reads it.</p>
+    </div>
+    <table style="font-size:30px">
+      <tr><td style="border-top:2px solid var(--ink)"><b>Student records</b> stay out unless an approved tool and policy allow it.</td></tr>
+      <tr><td><b>Human-subjects data</b> follows your IRB protocol.</td></tr>
+      <tr><td><b>Unpublished work and reviews</b> held in confidence stay private.</td></tr>
+      <tr><td><b>McNeese guidance:</b> [confirm current AI and data policy before the session]</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- 21 -->
+<section class="slide gold center">
+  <p class="eyebrow">Your turn · live</p>
+  <h1>Name a task. We’ll build the folder for it.</h1>
+  <p class="lede" style="color:var(--ink)">We pick a safe stand-in, write the brief, and try one step together.</p>
+</section>
+
+<!-- 22 -->
+<section class="slide dark spread">
+  <p class="eyebrow">Monday</p>
+  <div class="head" style="gap:36px">
+    <h1>Your first folder can be tiny.</h1>
+    <p class="lede">One folder. One brief. One real task. One check before you trust it.</p>
+  </div>
+  <div class="row" style="gap:80px">
+    <div class="head" style="gap:8px"><p class="small">This folder, slides and prompts</p><p style="font-family:var(--mono);font-size:30px;color:var(--gold)">github.com/JELambert/ai-harness-guide</p></div>
+    <div class="head" style="gap:8px"><p class="small">Handout and setup</p><p style="font-family:var(--mono);font-size:30px;color:var(--gold)">jelambert.com/ai-harness-guide</p></div>
+  </div>
+</section>
+
+</div>
+<div id="nav"></div>
+<script>
+  const slides = [...document.querySelectorAll('.slide')];
+  const nav = document.getElementById('nav');
+  let i = Math.max(0, Math.min(slides.length - 1, (parseInt(location.hash.slice(1), 10) || 1) - 1));
+  slides.forEach((s, n) => {
+    const f = document.createElement('div');
+    f.className = 'footer';
+    f.innerHTML = '<span>AI Harness Guide</span><span>' + (n + 1) + '</span>';
+    if (n > 0) s.appendChild(f);
+  });
+  function show(n) {
+    i = Math.max(0, Math.min(slides.length - 1, n));
+    slides.forEach((s, k) => s.classList.toggle('active', k === i));
+    nav.textContent = (i + 1) + ' / ' + slides.length;
+    history.replaceState(null, '', '#' + (i + 1));
+  }
+  function fit() {
+    const s = Math.min(innerWidth / 1920, innerHeight / 1080);
+    document.getElementById('deck').style.transform = 'translate(-50%, -50%) scale(' + s + ')';
+  }
+  addEventListener('resize', fit);
+  addEventListener('keydown', e => {
+    if (['ArrowRight', 'PageDown', ' ', 'Enter'].includes(e.key)) { e.preventDefault(); show(i + 1); }
+    if (['ArrowLeft', 'PageUp', 'Backspace'].includes(e.key)) { e.preventDefault(); show(i - 1); }
+    if (e.key === 'Home') show(0);
+    if (e.key === 'End') show(slides.length - 1);
+    if (e.key === 'f') document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen();
+  });
+  addEventListener('click', e => show(e.clientX > innerWidth / 3 ? i + 1 : i - 1));
+  let tx = null;
+  addEventListener('touchstart', e => tx = e.touches[0].clientX, { passive: true });
+  addEventListener('touchend', e => { if (tx === null) return; const d = e.changedTouches[0].clientX - tx; if (Math.abs(d) > 40) show(d < 0 ? i + 1 : i - 1); tx = null; });
+  fit(); show(i);
+</script>
+</body>
+</html>

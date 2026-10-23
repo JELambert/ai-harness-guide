@@ -1,0 +1,10 @@
+Example State University: Spring 2027 Academic Calendar (sample for workshop use, not an official calendar)
+
+Mon, January 11, 2027      Classes begin
+Mon, January 18, 2027      Martin Luther King Jr. Day, no classes
+Mon-Wed, February 8-10     Mardi Gras holiday, no classes
+Fri, March 5, 2027         Midterm grades due
+Mon-Fri, March 22-26       Spring break, no classes (includes Good Friday)
+Fri, April 2, 2027         Last day to drop with a W
+Fri, April 30, 2027        Last day of classes
+Mon-Fri, May 3-7           Final examinations

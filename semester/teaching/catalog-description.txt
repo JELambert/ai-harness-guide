@@ -1,0 +1,12 @@
+MGMT 340. Data-Driven Decision Making. 3 credit hours.
+Prerequisites: MATH 202 or STAT 210, and junior standing.
+Using data to frame, analyze, and communicate managerial decisions. Topics include
+problem framing, descriptive analytics, experiments and A/B testing, regression for
+decision support, forecasting, dashboards and data storytelling, and the ethical and
+organizational implications of analytics and automation.
+Student learning outcomes:
+1. Frame a business problem as a question that data can answer.
+2. Summarize and visualize data accurately for a managerial audience.
+3. Interpret the results of a simple experiment and a regression model.
+4. Communicate a data-supported recommendation in writing and in person.
+5. Evaluate the ethical and organizational consequences of analytics and automation.
