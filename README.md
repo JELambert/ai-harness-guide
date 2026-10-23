@@ -13,8 +13,7 @@ For this workshop, a harness is the working environment around a model: the proj
 - [`slides/mcneese-ai-harnesses.md`](slides/mcneese-ai-harnesses.md): earlier Marp deck, superseded 2026-10-23 and kept for reference.
 - [`slides/mcneese-ai-harnesses.html`](slides/mcneese-ai-harnesses.html): browser presentation, kept in this private repo for review.
 - [`slides/mcneese-ai-harnesses.pdf`](slides/mcneese-ai-harnesses.pdf): offline presentation copy.
-- [`examples/coups-paper/`](examples/coups-paper/): Demo 1, paper to data. `start/` is the stage folder; `reference/` is a verified dry run (claim card, reproduced numbers, data drift).
-- [`examples/scholar-footprint/`](examples/scholar-footprint/): Demo 2, set up a Field Guide module. Builds a `scholar` module (OpenAlex to SQLite) plus People notes for coauthors; `reference/` is a verified dry run.
+- [`facilitator/mission-and-plan.md`](facilitator/mission-and-plan.md): the mission (one folder, one harness), session shape, and build list. Demos are being rebuilt around `examples/my-semester/`.
 - [`facilitator/run-of-show.md`](facilitator/run-of-show.md): two-hour teaching plan and demo checkpoints.
 - [`facilitator/source-map.md`](facilitator/source-map.md): what was adapted from the earlier crash course and BUS 751, including distribution boundaries.
 - [`PUBLISHING.md`](PUBLISHING.md): how the handout is published to JELambert.com.
