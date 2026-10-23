@@ -1,0 +1,21 @@
+{
+  "v": 4,
+  "createdOnFiles": {"v": 1, "at": "2026-10-23T14:10:00Z"},
+  "lists": "css",
+  "title": "AI Harnesses for Research",
+  "order": ["cover", "promise", "agenda", "harness", "chat-vs-harness", "loop", "you-decide", "final-file", "git-words", "diff", "push", "git-why", "d1-open", "debate", "d1-desk", "d1-pass1", "d1-claimcard", "d1-pass2", "d1-chart", "d1-drift", "d1-check", "d2-open", "planes", "d2-card", "d2-pipeline", "d2-schema", "d2-ask", "d2-checks", "habits", "guardrails", "your-turn", "close"],
+  "sections": {
+    "s1": {"description": "Opening: the promise of the session and the two-hour plan.", "start": "cover"},
+    "s2": {"description": "Mental model: a model versus the harness around it, and the human decision.", "start": "harness"},
+    "s3": {"description": "Git and GitHub: repository, commit, diff, push, and why agents need them.", "start": "final-file"},
+    "s4": {"description": "Demo 1: from a published coups paper to its data and a reproduced figure.", "start": "d1-open"},
+    "s5": {"description": "Demo 2: turn the one-off analysis into a Field Guide Signal backed by SQLite.", "start": "d2-open"},
+    "s6": {"description": "Close: habits, guardrails, audience examples, and next steps.", "start": "habits"}
+  },
+  "faces": {
+    "source-serif-4": {"family": "Source Serif 4", "href": "https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400..700;1,400..700&display=swap"},
+    "ibm-plex-sans": {"family": "IBM Plex Sans", "href": "https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&display=swap"},
+    "jetbrains-mono": {"family": "JetBrains Mono", "href": "https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&display=swap"}
+  },
+  "designSystems": []
+}

@@ -1,0 +1,27 @@
+<section id="d2-ask" style="background:#F5F2EA;color:#172033;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
+<div style="display:flex;flex-direction:column;gap:16px">
+<p style="font-size:24px;letter-spacing:3px;text-transform:uppercase;color:#2F5BD3;font-weight:600">The payoff</p>
+<h2 style="font-family:'Source Serif 4', Georgia, serif;font-size:72px;font-weight:600;line-height:1.1">Ask in English, read the SQL, check the answer</h2>
+</div>
+<p style="font-family:'Source Serif 4', Georgia, serif;font-size:40px;font-style:italic;color:#2F5BD3">“Which countries have had the most coup attempts since 2020?”</p>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:48px">
+<div style="display:flex;flex-direction:column;background:#14213A;border-radius:20px;padding:36px 40px;gap:4px;justify-content:center">
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:26px;line-height:1.5;color:#F2B632">SELECT country, COUNT(*) AS attempts,</p>
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:26px;line-height:1.5;color:#F5F2EA">&#160;&#160;SUM(coup = 2) AS successful</p>
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:26px;line-height:1.5;color:#F5F2EA">FROM events</p>
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:26px;line-height:1.5;color:#F5F2EA">WHERE year &gt;= 2020</p>
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:26px;line-height:1.5;color:#F5F2EA">GROUP BY country</p>
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:26px;line-height:1.5;color:#F5F2EA">ORDER BY attempts DESC, country;</p>
+</div>
+<table style="font-size:28px;color:#172033">
+<tr><th style="width:50%;text-align:left">Country</th><th style="width:25%;text-align:right">Attempts</th><th style="width:25%;text-align:right">Successful</th></tr>
+<tr><td>Niger</td><td style="text-align:right">3</td><td style="text-align:right">1</td></tr>
+<tr><td>Sudan</td><td style="text-align:right">3</td><td style="text-align:right">1</td></tr>
+<tr><td>Burkina Faso</td><td style="text-align:right">2</td><td style="text-align:right">2</td></tr>
+<tr><td>Guinea-Bissau</td><td style="text-align:right">2</td><td style="text-align:right">1</td></tr>
+<tr><td>Mali</td><td style="text-align:right">2</td><td style="text-align:right">2</td></tr>
+</table>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#6B7385">Real output on release V2026.08.29: 21 attempts in 14 countries since 2020. Query run 2026-10-23.</p>
+<aside>This is the moment people want to try themselves. Always show the SQL, never just the answer: the WHERE clause is where errors hide (for example, year greater than 2020 instead of greater than or equal). Then join to the papers table: “for each of these, the three newest open-access papers.” If the room is engaged, ask it to write a one-paragraph weekly brief into a markdown note, which is a Surface.</aside>
+</section>

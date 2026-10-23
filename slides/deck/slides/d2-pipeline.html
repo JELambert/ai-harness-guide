@@ -1,0 +1,34 @@
+<section id="d2-pipeline" style="background:#F5F2EA;color:#172033;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:56px">
+<div style="display:flex;flex-direction:column;gap:16px">
+<p style="font-size:24px;letter-spacing:3px;text-transform:uppercase;color:#2F5BD3;font-weight:600">Step 3 · Act</p>
+<h2 style="font-family:'Source Serif 4', Georgia, serif;font-size:72px;font-weight:600;line-height:1.1">Two open feeds, one local database</h2>
+</div>
+<div style="display:flex;align-items:center;gap:32px">
+<div style="width:420px;display:flex;flex-direction:column;gap:24px">
+<div style="display:flex;flex-direction:column;gap:8px;background:#FFFDF8;border:1px solid #DED8C8;border-radius:16px;padding:28px">
+<p style="font-size:24px;letter-spacing:2px;text-transform:uppercase;color:#6B7385;font-weight:600">Events</p>
+<p style="font-size:30px;font-weight:600">Powell and Thyne CSV</p>
+<p style="font-size:24px;color:#4A5468">Versioned releases</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:8px;background:#FFFDF8;border:1px solid #DED8C8;border-radius:16px;padding:28px">
+<p style="font-size:24px;letter-spacing:2px;text-transform:uppercase;color:#6B7385;font-weight:600">Literature</p>
+<p style="font-size:30px;font-weight:600">OpenAlex API</p>
+<p style="font-size:24px;color:#4A5468">New papers by country</p>
+</div>
+</div>
+<x-shape kind="arrow-right" style="width:96px;height:48px;background:#2F5BD3"></x-shape>
+<div style="width:300px;display:flex;flex-direction:column;gap:12px;background:#2F5BD3;border-radius:16px;padding:32px">
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:30px;color:#F5F2EA">coups sync</p>
+<p style="font-size:24px;line-height:1.4;color:#E6ECFF">Fetch, stamp the version, dedupe, count rows</p>
+</div>
+<x-shape kind="arrow-right" style="width:96px;height:48px;background:#2F5BD3"></x-shape>
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#14213A;border-radius:16px;padding:32px">
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:30px;color:#F2B632">store/coups.db</p>
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:26px;color:#F5F2EA">events</p>
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:26px;color:#F5F2EA">releases</p>
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:26px;color:#F5F2EA">papers</p>
+</div>
+</div>
+<p style="font-size:32px;color:#4A5468">Plain SQLite: one file, readable by R, Stata, Python, or a spreadsheet. Nothing to host.</p>
+<aside>The prompt to type: “Read the coups module card. Build coups sync: fetch the current Powell and Thyne release and store every event with its release version in store/coups.db; for each country with a coup since 2020, fetch the ten newest OpenAlex works mentioning it and coups. Report row counts per table. Commit.” Watch for it choosing a deduplication key; ask it to explain the choice.</aside>
+</section>

@@ -1,0 +1,25 @@
+<section id="d2-schema" style="background:#F5F2EA;color:#172033;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px 128px 160px;display:grid;grid-template-columns:1fr 1fr;gap:80px">
+<div style="display:flex;flex-direction:column;gap:40px">
+<div style="display:flex;flex-direction:column;gap:16px">
+<p style="font-size:24px;letter-spacing:3px;text-transform:uppercase;color:#2F5BD3;font-weight:600">Step 2 · Inspect the design</p>
+<h2 style="font-family:'Source Serif 4', Georgia, serif;font-size:72px;font-weight:600;line-height:1.1">Three tables, one key decision</h2>
+</div>
+<p style="font-size:32px;line-height:1.45;color:#4A5468">Ask the harness to propose the schema and <b style="color:#172033">explain the key</b> before it writes code.</p>
+<p style="font-size:32px;line-height:1.45;color:#4A5468">Keeping every release, not only the latest, is what makes Demo 1’s drift a query instead of a surprise.</p>
+</div>
+<div style="display:flex;flex-direction:column;background:#14213A;border-radius:20px;padding:44px 48px;gap:4px;justify-content:center">
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:26px;line-height:1.5;color:#F2B632">CREATE TABLE releases (</p>
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:26px;line-height:1.5;color:#F5F2EA">&#160;&#160;version TEXT PRIMARY KEY,</p>
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:26px;line-height:1.5;color:#F5F2EA">&#160;&#160;fetched_at TEXT, n_rows INT);</p>
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:26px;line-height:1.5;color:#F2B632">CREATE TABLE events (</p>
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:26px;line-height:1.5;color:#F5F2EA">&#160;&#160;country TEXT, ccode INT,</p>
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:26px;line-height:1.5;color:#F5F2EA">&#160;&#160;year INT, month INT, day INT,</p>
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:26px;line-height:1.5;color:#F5F2EA">&#160;&#160;coup INT,&#160;&#160;<span style="color:#8C9AB5">-- 1 failed, 2 success</span></p>
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:26px;line-height:1.5;color:#F5F2EA">&#160;&#160;release TEXT REFERENCES releases);</p>
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:26px;line-height:1.5;color:#F2B632">CREATE TABLE papers (</p>
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:26px;line-height:1.5;color:#F5F2EA">&#160;&#160;openalex_id TEXT PRIMARY KEY,</p>
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:26px;line-height:1.5;color:#F5F2EA">&#160;&#160;ccode INT, title TEXT, year INT,</p>
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:26px;line-height:1.5;color:#F5F2EA">&#160;&#160;doi TEXT, is_open_access INT);</p>
+</div>
+<aside>The key decision is how to identify an event across releases. Country code plus full date is the obvious key, and Demo 1 just showed why it fails: a date correction looks like one deleted coup and one new coup. Let the harness propose a key, then ask what happens to Chad 2006. A good answer is to keep releases separate and match with a tolerance, flagging near-matches for a human.</aside>
+</section>
