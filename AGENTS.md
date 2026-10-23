@@ -9,6 +9,8 @@ A workshop on working with AI harnesses, and the folder we work in during it.
 - `slides.html`: the workshop deck. Open it in a browser.
 - `handout.html`: the participant handout.
 - `prompts.md`: every prompt used in the session.
+- `SETUP.md`: a first-time setup walkthrough the person pastes in.
+- `starter/AGENTS.md`: a template brief for the person's own folder. Do not fill it in here; copy it to their folder first.
 - `semester/`: a sample faculty folder for one semester. Dr. Sam Rivera (fictional) teaches MGMT 340 at Example State University (fictional). Everything in it is synthetic or open access.
   - `inbox/`: emails saved as `.eml` files
   - `teaching/`: catalog text, last year's syllabus, the academic calendar
