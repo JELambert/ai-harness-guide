@@ -4,107 +4,137 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="light">
-  <meta name="description" content="A beginner's field guide to AI harnesses for a two-hour McNeese faculty and staff workshop.">
-  <title>AI Harnesses | A beginner's field guide</title>
+  <meta name="description" content="A practical field guide to AI harnesses, GitHub, and verifiable workflows for McNeese faculty and staff.">
+  <title>Make the work visible | AI Harness Field Guide</title>
   <style>
-    :root { --ink:#17283d; --muted:#50647a; --paper:#f6f4ef; --white:#fffefa; --line:#cbd5d7; --teal:#076b69; --teal-light:#dceee9; --orange:#dc6a37; --navy:#102d49; --focus:#ef9b35; font-family: Avenir Next, Avenir, Segoe UI, sans-serif; color:var(--ink); background:var(--paper); }
+    :root { --paper:#f3f1eb; --white:#fffefa; --ink:#14202a; --muted:#52606a; --line:#c9d0ce; --blue:#244acb; --blue-dark:#13276d; --coral:#df6549; --pale:#e6eaff; --mint:#e2eee6; --focus:#e15b2d; font-family:Inter,"Avenir Next",Arial,sans-serif; color:var(--ink); background:var(--paper); }
     * { box-sizing:border-box; }
     html { scroll-behavior:smooth; }
-    body { margin:0; line-height:1.58; }
-    a { color:#075e62; text-underline-offset:.18em; }
-    a:hover { color:#a9461c; }
-    a:focus-visible, button:focus-visible, summary:focus-visible { outline:3px solid var(--focus); outline-offset:3px; }
-    .skip { position:absolute; left:-9999px; top:8px; background:var(--white); padding:.65rem 1rem; z-index:10; }
-    .skip:focus { left:8px; }
-    .shell { max-width:1120px; margin:auto; padding:0 1.25rem; }
-    .topbar { background:var(--navy); color:#fff; }
-    .topbar .shell { min-height:62px; display:flex; justify-content:space-between; align-items:center; gap:1rem; }
-    .brand { display:flex; gap:.65rem; align-items:center; text-transform:uppercase; letter-spacing:.11em; font-size:.8rem; font-weight:800; }
-    .brand-mark { display:grid; place-items:center; width:29px; height:29px; border:1.5px solid #f2b26e; color:#f2b26e; transform:rotate(-12deg); }
-    nav { display:flex; flex-wrap:wrap; gap:1.2rem; }
-    nav a { color:#e1f1ef; font-size:.85rem; text-decoration:none; }
-    nav a:hover { color:#ffc88b; }
-    .hero { padding:5.1rem 0 4rem; background:linear-gradient(115deg,#f6f4ef 0%,#f6f4ef 62%,#e1eee9 100%); border-bottom:1px solid var(--line); }
-    .hero-grid { display:grid; grid-template-columns:minmax(0,1.25fr) minmax(250px,.75fr); gap:3.5rem; align-items:center; }
-    .eyebrow { color:var(--teal); font-size:.79rem; font-weight:800; text-transform:uppercase; letter-spacing:.17em; margin:0 0 1rem; }
-    h1, h2, h3 { font-family: Iowan Old Style, Georgia, serif; line-height:1.12; letter-spacing:-.035em; }
-    h1 { font-size:clamp(3.2rem,7vw,6rem); max-width:12ch; margin:0; }
-    .hero-lead { font-size:1.25rem; max-width:58ch; color:#314b62; margin:1.45rem 0 1.8rem; }
-    .meta { display:flex; flex-wrap:wrap; gap:.65rem; }
-    .pill { display:inline-flex; align-items:center; border:1px solid #9ab6b4; background:#ecf5f1; border-radius:100px; padding:.35rem .8rem; font-size:.8rem; font-weight:700; }
-    .loop-card { background:var(--navy); color:#fff; border-radius:14px; padding:1.55rem; box-shadow:12px 12px 0 #c9ded6; }
-    .loop-card .eyebrow { color:#bde4d8; }
-    .loop-card ol { margin:0; padding:0; list-style:none; }
-    .loop-card li { display:flex; gap:1rem; padding:.65rem 0; border-top:1px solid #50708b; }
-    .loop-card b { color:#ffc18c; font-family:Georgia,serif; font-size:1.4rem; min-width:1.7rem; }
-    .loop-card strong { display:block; }
-    .loop-card span { color:#d7e8ed; font-size:.88rem; }
-    section { padding:4rem 0; border-bottom:1px solid var(--line); }
-    .section-head { max-width:710px; margin-bottom:2.2rem; }
-    h2 { font-size:clamp(2rem,4vw,3.3rem); margin:.1rem 0 .7rem; }
-    h3 { font-size:1.42rem; margin:.1rem 0 .65rem; }
-    p { margin:.5rem 0 1rem; }
-    .lede { color:var(--muted); font-size:1.08rem; }
-    .cards { display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; }
-    .card { background:var(--white); border:1px solid var(--line); border-radius:10px; padding:1.45rem; }
-    .card .number { color:var(--orange); font-weight:800; letter-spacing:.12em; font-size:.8rem; }
-    .card p { color:var(--muted); }
-    .wide { grid-column:span 2; }
-    .checklist { margin:0; padding:0; list-style:none; }
-    .checklist li { padding:.85rem 0 .85rem 2.1rem; position:relative; border-top:1px solid var(--line); }
-    .checklist li::before { content:""; position:absolute; left:.1rem; top:1.1rem; width:1rem; height:1rem; border:2px solid var(--teal); border-radius:3px; }
-    .note { border-left:4px solid var(--orange); padding:.8rem 1.2rem; background:#fff0e8; margin:1.5rem 0; }
-    .prompt { background:var(--navy); color:#fff; border-radius:12px; padding:1.4rem; }
-    .prompt p { color:#e0edf1; }
-    .prompt pre { white-space:pre-wrap; overflow-wrap:anywhere; font:inherit; line-height:1.55; background:#173e5c; padding:1.1rem; border-radius:7px; margin:1rem 0; }
-    .prompt button { appearance:none; border:0; border-radius:5px; padding:.65rem 1rem; background:#f3b57a; color:#17283d; font:inherit; font-weight:800; cursor:pointer; }
-    .prompt button:hover { background:#ffd2a8; }
-    .two-col { display:grid; grid-template-columns:1fr 1fr; gap:1.3rem; }
-    .steps { counter-reset:step; list-style:none; padding:0; margin:0; }
-    .steps li { counter-increment:step; padding:1rem 0 1rem 3rem; border-top:1px solid var(--line); position:relative; }
-    .steps li::before { content:counter(step,decimal-leading-zero); position:absolute; left:0; top:1rem; color:var(--orange); font-weight:900; }
-    details { background:var(--white); border:1px solid var(--line); border-radius:9px; margin:.7rem 0; padding:1rem 1.2rem; }
-    summary { cursor:pointer; font-weight:800; color:var(--navy); }
-    details p:last-child { margin-bottom:0; }
-    .timeline { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:.7rem; }
-    .slot { border-top:4px solid var(--teal); background:var(--white); padding:1.1rem; }
-    .slot time { font-size:.8rem; font-weight:900; color:var(--teal); }
-    .slot h3 { font-size:1.16rem; margin:.5rem 0; }
-    .slot p { color:var(--muted); font-size:.88rem; margin:0; }
-    footer { background:var(--navy); color:#dbe9ed; padding:2rem 0; font-size:.88rem; }
-    footer a { color:#bfede2; }
-    @media(max-width:800px) { .hero-grid,.cards,.two-col { grid-template-columns:1fr; } .wide { grid-column:auto; } .timeline { grid-template-columns:repeat(2,1fr); } .hero { padding:3.7rem 0 3rem; } }
-    @media(max-width:560px) { .topbar .shell { align-items:flex-start; flex-direction:column; padding-top:.85rem; padding-bottom:.85rem; } nav { gap:.8rem; } h1 { font-size:3.25rem; } .timeline { grid-template-columns:1fr; } section { padding:3rem 0; } }
+    body { margin:0; line-height:1.56; }
+    a { color:var(--blue-dark); text-underline-offset:.18em; }
+    a:hover { color:#a7371e; }
+    a:focus-visible,button:focus-visible,summary:focus-visible { outline:3px solid var(--focus); outline-offset:3px; }
+    h1,h2,h3,p { margin-top:0; }
+    h1,h2,h3 { line-height:1.12; letter-spacing:-.035em; }
+    h1 { font-size:clamp(3.5rem,9vw,7.8rem); max-width:11ch; margin-bottom:1.4rem; }
+    h2 { font-size:clamp(2.2rem,4.5vw,4.1rem); max-width:16ch; margin-bottom:1rem; }
+    h3 { font-size:1.35rem; }
+    .serif { font-family:Georgia,"Iowan Old Style",serif; }
+    .mono,.kicker,.tiny,.tag,.file-tree,.minutes { font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; }
+    .wrap { width:min(1180px,calc(100% - 3rem)); margin:auto; }
+    .skip { position:absolute; left:-9999px; top:10px; z-index:10; background:var(--white); padding:.6rem 1rem; }
+    .skip:focus { left:10px; }
+    .top { background:var(--ink); color:#fff; }
+    .top .wrap { display:flex; align-items:center; justify-content:space-between; gap:1.5rem; min-height:64px; }
+    .brand { font-size:.78rem; font-weight:850; letter-spacing:.17em; text-transform:uppercase; }
+    .brand i { display:inline-block; width:13px; height:13px; background:var(--coral); transform:rotate(45deg); margin-right:.65rem; }
+    nav { display:flex; flex-wrap:wrap; gap:1.3rem; }
+    nav a { color:#e7ecf5; font-size:.84rem; text-decoration:none; }
+    nav a:hover { color:#ffad91; }
+    .hero { overflow:hidden; border-bottom:1px solid var(--line); }
+    .hero .wrap { display:grid; grid-template-columns:minmax(0,1.2fr) minmax(270px,.8fr); gap:4rem; align-items:center; padding-top:5.5rem; padding-bottom:6rem; }
+    .kicker { color:var(--blue); font-weight:850; text-transform:uppercase; letter-spacing:.14em; font-size:.78rem; margin-bottom:1rem; }
+    .hero h1 em { color:var(--blue); font-style:normal; }
+    .hero .lead { font-size:clamp(1.15rem,2vw,1.48rem); max-width:50ch; color:#364a59; }
+    .hero .minor { color:var(--muted); font-size:.94rem; margin-top:1.6rem; }
+    .ribbon { display:flex; flex-wrap:wrap; gap:.5rem; margin-top:2rem; }
+    .tag { background:var(--white); border:1px solid var(--line); padding:.36rem .65rem; font-size:.72rem; font-weight:700; text-transform:uppercase; }
+    .specimen { background:var(--ink); color:#eaf0ff; border:1px solid #344253; box-shadow:16px 16px 0 var(--pale); padding:1.2rem; transform:rotate(1.5deg); }
+    .specimen .bar { border-bottom:1px solid #657381; padding:.1rem .2rem .8rem; color:#b6c4da; font-size:.76rem; letter-spacing:.08em; text-transform:uppercase; }
+    .specimen .bar span { color:#ff9a7d; float:right; }
+    .specimen .content { padding:1.1rem .2rem .25rem; }
+    .specimen .old { text-decoration:line-through; color:#9aabba; }
+    .specimen .new { color:#91e1b2; }
+    .specimen p { margin:.85rem 0; }
+    .specimen .stamp { display:inline-block; border:1px solid #91e1b2; color:#91e1b2; padding:.3rem .55rem; margin-top:1rem; font-size:.74rem; text-transform:uppercase; transform:rotate(-5deg); }
+    section { padding:5.2rem 0; border-bottom:1px solid var(--line); }
+    .intro { display:grid; grid-template-columns:1fr 1.2fr; gap:3rem; align-items:start; margin-bottom:2.2rem; }
+    .intro p { color:var(--muted); font-size:1.11rem; max-width:58ch; }
+    .rule { border-top:4px solid var(--ink); }
+    .split { display:grid; grid-template-columns:1fr 1fr; gap:1.4rem; }
+    .three { display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; }
+    .block { background:var(--white); border:1px solid var(--line); padding:1.5rem; }
+    .block p:last-child { margin-bottom:0; }
+    .block .tiny { color:var(--blue); }
+    .tiny { text-transform:uppercase; font-size:.75rem; font-weight:800; letter-spacing:.08em; }
+    .big-quote { font-family:Georgia,serif; font-size:clamp(1.6rem,3vw,2.7rem); line-height:1.22; margin:1.8rem 0; max-width:29ch; }
+    .contrast { background:var(--ink); color:#f5f7ff; }
+    .contrast .kicker { color:#a8bbff; }
+    .contrast .intro p,.contrast .small { color:#ced7ea; }
+    .contrast .block { background:#1e2a36; border-color:#536171; }
+    .contrast .block .tiny { color:#ffae94; }
+    .file-tree { background:#121b25; color:#d9e5ff; border:1px solid #536171; padding:1.3rem; white-space:pre-wrap; font-size:.9rem; line-height:1.65; overflow-x:auto; }
+    .file-tree b { color:#a9e5c4; }
+    .filename { background:#e8e9e5; padding:.12rem .3rem; font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:.88em; }
+    .contrast .filename { background:#344456; }
+    .ladder { list-style:none; padding:0; margin:0; counter-reset:step; }
+    .ladder li { counter-increment:step; display:grid; grid-template-columns:3rem 1fr; gap:1rem; padding:1.3rem 0; border-top:1px solid var(--line); }
+    .ladder li::before { content:counter(step,decimal-leading-zero); color:var(--coral); font-weight:900; font-family:ui-monospace,monospace; }
+    .ladder strong { display:block; }
+    .timeline { display:grid; grid-template-columns:repeat(5,1fr); gap:.75rem; }
+    .timeline article { border-top:5px solid var(--blue); padding:1rem .25rem; }
+    .timeline h3 { margin:.6rem 0; font-size:1.12rem; }
+    .timeline p { color:var(--muted); font-size:.9rem; }
+    .minutes { color:var(--blue); font-size:.84rem; font-weight:800; }
+    .prompt { background:#e6eaff; border-left:5px solid var(--blue); padding:1.3rem; min-width:0; }
+    .prompt pre { white-space:pre-wrap; overflow-wrap:anywhere; font:inherit; font-size:.95rem; line-height:1.55; margin:0 0 1rem; }
+    .prompt button { font:inherit; font-size:.82rem; font-weight:800; border:0; background:var(--blue); color:white; cursor:pointer; padding:.65rem 1rem; }
+    .prompt button:hover { background:var(--blue-dark); }
+    .margin-note { background:var(--mint); border-left:5px solid #398b62; padding:1rem 1.3rem; margin-top:2rem; }
+    .warn { background:#fff1e7; border-left-color:var(--coral); }
+    .demo { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:1.5rem; align-items:start; }
+    .demo .block { height:100%; }
+    .demo .block h3 { margin-bottom:.6rem; }
+    .table-scroll { overflow-x:auto; }
+    table { width:100%; border-collapse:collapse; min-width:500px; }
+    th,td { border-top:1px solid var(--line); text-align:left; vertical-align:top; padding:.95rem .6rem; }
+    th { font-size:.74rem; text-transform:uppercase; letter-spacing:.1em; color:var(--blue); }
+    details { border-top:1px solid var(--line); padding:1rem 0; }
+    details:last-child { border-bottom:1px solid var(--line); }
+    summary { cursor:pointer; font-weight:800; }
+    details p { margin:.65rem 0 0; max-width:65ch; }
+    footer { background:var(--ink); color:#dce5f2; padding:2.3rem 0; font-size:.86rem; }
+    footer a { color:#b7c8ff; }
+    @media(max-width:900px) { .hero .wrap,.intro,.split,.demo { grid-template-columns:1fr; } .hero .wrap { gap:3rem; } .specimen { max-width:540px; } .three { grid-template-columns:1fr 1fr; } .timeline { grid-template-columns:repeat(2,1fr); } }
+    @media(max-width:620px) { .wrap { width:min(100% - 2rem,1180px); } .top .wrap { align-items:flex-start; flex-direction:column; padding-top:1rem; padding-bottom:1rem; } nav { gap:.7rem 1rem; } .hero .wrap { padding-top:3.5rem; padding-bottom:4rem; } .three,.timeline { grid-template-columns:1fr; } section { padding:3.7rem 0; } .specimen { transform:none; box-shadow:8px 8px 0 var(--pale); } }
     @media(prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } }
-    @media print { .topbar, .prompt button { display:none; } section { break-inside:avoid; } .hero,.loop-card,.prompt { print-color-adjust:exact; } }
+    @media print { .top,button,.skip { display:none; } section { break-inside:avoid; } .contrast,.specimen { print-color-adjust:exact; } }
   </style>
 </head>
 <body>
   <a class="skip" href="#main">Skip to main content</a>
-  <header class="topbar"><div class="shell"><div class="brand"><span class="brand-mark" aria-hidden="true">✳</span> AI Harness Field Guide</div><nav aria-label="Page sections"><a href="#before">Before you arrive</a><a href="#workshop">The workshop</a><a href="#github">GitHub basics</a><a href="#field-guide">Field Guide</a><a href="#try">Try it</a><a href="#tools">Optional setup</a></nav></div></header>
+  <header class="top"><div class="wrap"><div class="brand"><i aria-hidden="true"></i>AI Harness Field Guide</div><nav aria-label="Sections"><a href="#prepare">Prepare</a><a href="#mental-model">Mental model</a><a href="#github">GitHub</a><a href="#harness">Build a harness</a><a href="#demo">Live workflow</a><a href="#take-home">Take home</a></nav></div></header>
   <main id="main">
-    <div class="hero"><div class="shell hero-grid"><div><p class="eyebrow">McNeese workshop · faculty and staff</p><h1>Work with AI.<br>Stay in charge.</h1><p class="hero-lead">A practical introduction to AI harnesses, including Codex and Claude Code. We will explore GitHub, build a simple harness around a workflow, and walk through examples from question to checked result. No installation is required to follow along.</p><div class="meta"><span class="pill">2-hour guided demo</span><span class="pill">Beginner-friendly</span><span class="pill">Optional hands-on setup</span></div></div><aside class="loop-card" aria-label="The four-step workflow"><p class="eyebrow">The method, in four moves</p><ol><li><b>01</b><div><strong>Scope</strong><span>What should change, and what should not?</span></div></li><li><b>02</b><div><strong>Inspect</strong><span>Let the tool examine only the relevant context.</span></div></li><li><b>03</b><div><strong>Act</strong><span>Request one bounded result.</span></div></li><li><b>04</b><div><strong>Verify</strong><span>Review the output and own the decision.</span></div></li></ol></aside></div></div>
+    <div class="hero"><div class="wrap"><div><p class="kicker">A two-hour McNeese workshop for faculty and staff</p><h1>Make the work <em>visible.</em></h1><p class="lead">The interesting question is not “Which AI should I use?” It is “Can I give it the right context, see what it changed, and tell whether the result is any good?”</p><p class="minor">We will start with a familiar version-control mess, build a tiny AI harness around a real workflow, and inspect the result together. Guided demo, no installation required.</p><div class="ribbon"><span class="tag">Beginner friendly</span><span class="tag">GitHub in 20 minutes</span><span class="tag">Optional setup</span></div></div><aside class="specimen" aria-label="A sample review of an AI-proposed change"><div class="bar mono">A change you can inspect <span>sample diff</span></div><div class="content mono"><p class="old">- Send the announcement today.</p><p class="new">+ Draft the announcement for review.</p><p class="new">+ Check date and venue against the source brief.</p><p class="old">- Estimated attendance: 120</p><p class="new">+ Attendance: unconfirmed</p><span class="stamp">Reviewed, not published</span></div></aside></div></div>
 
-    <section id="before"><div class="shell"><div class="section-head"><p class="eyebrow">01 / Before you arrive</p><h2>You can come with just a question.</h2><p class="lede">Bring any question or recurring workflow you think AI might help you understand, improve, or carry out. You do not need to prepare a project or install anything to take part.</p></div><div class="cards"><article class="card"><span class="number">BRING</span><h3>A question or workflow</h3><p>What do you wish took less time, or what would you like to figure out? We can talk through the idea and use a public or made-up example if your real materials are private.</p></article><article class="card"><span class="number">NOTICE</span><h3>One success check</h3><p>What would a useful result look like? Examples: no missing steps, correct totals, or a clear citation to source material.</p></article><article class="card"><span class="number">OPTIONAL PRE-WORK</span><h3>Set up GitHub</h3><p>If you want to follow along hands-on, <a href="https://docs.github.com/en/account-and-profile/how-tos/account-management/creating-an-account-on-github">create a free personal account</a> and verify your email. You can also just watch the demonstration.</p></article></div><div class="note"><strong>No tool purchase is required for the workshop.</strong> If you want to practice later, check your institution's account access and data policies before using real work material.</div></div></section>
+    <section id="prepare"><div class="wrap"><div class="intro"><div><p class="kicker">Before we meet</p><h2>Bring a problem, not a perfect prompt.</h2></div><p>Think of one question or recurring task that takes more time than it should. It could be preparing a workshop, organizing research notes, checking a spreadsheet, or maintaining a set of instructions. We can use a public or made-up stand-in if your real material is private.</p></div><div class="three"><div class="block rule"><p class="tiny">Bring</p><h3>One low-stakes idea</h3><p>What would you want AI to help you <em>understand</em> or <em>draft</em>? No files or accounts are required.</p></div><div class="block rule"><p class="tiny">Notice</p><h3>One sign of success</h3><p>Could a colleague follow the steps? Does a number reconcile? Does the draft stay faithful to the source?</p></div><div class="block rule"><p class="tiny">Optional</p><h3>A free GitHub account</h3><p><a href="https://docs.github.com/en/account-and-profile/how-tos/account-management/creating-an-account-on-github">Create an account</a> and verify your email if you want to explore afterward. Watching the demo is enough.</p></div></div><p class="margin-note">We will use synthetic and public examples. Check institutional policy and approved accounts before connecting student, personnel, research, or financial material to any service.</p></div></section>
 
-    <section id="workshop"><div class="shell"><div class="section-head"><p class="eyebrow">02 / The workshop</p><h2>What you will see in two hours</h2><p class="lede">We will begin with a mental model, spend about 20 minutes on GitHub, then build a simple harness before walking through examples together.</p></div><div class="timeline"><div class="slot"><time>00–15 MIN</time><h3>The mental model</h3><p>What an AI harness can see and do, where its instructions come from, and how you stay in control.</p></div><div class="slot"><time>15–35 MIN</time><h3>GitHub</h3><p>Repositories, saved changes, public versus private visibility, and why project history matters.</p></div><div class="slot"><time>35–70 MIN</time><h3>Create your harness</h3><p>Use the Almanac Field Guide to show how files, standing instructions, tools, and review rules fit together.</p></div><div class="slot"><time>70–95 MIN</time><h3>End-to-end examples</h3><p>Watch a couple of short workflows go from question to context, action, and checked result.</p></div><div class="slot"><time>95–120 MIN</time><h3>Your questions, live</h3><p>Bring a question or workflow idea. We will try a few together, using safe stand-ins for private material.</p></div></div><div class="two-col" id="github" style="margin-top:2rem"><div><h3>Why GitHub?</h3><p>Git tracks versions of files; GitHub gives a project a shared home online. A repository holds the files and their history. A commit is a saved checkpoint, and a proposed change can be reviewed before it becomes part of the project. Repositories can be public or private, so check visibility before adding anything sensitive.</p></div><div><h3>Where does the AI fit?</h3><p>Give the harness a small repository and a bounded task. Let it inspect the files, show the exact changes, and run a check. You decide whether those changes should be saved or shared. The repository gives you a way to see what changed and return to an earlier version.</p></div></div><div class="two-col" id="field-guide" style="margin-top:2rem"><div><h3>Create a harness for your work</h3><p>Start with a folder and a short standing brief: your goal, the files the agent may use, its boundaries, where results should go, and how you will check them. Add tools only when the workflow needs them. The goal is a repeatable process you understand and can revise.</p></div><div><h3>The Almanac Field Guide example</h3><p>The Field Guide shows how this can grow into a durable system: plain files you control, a shared agent brief, GitHub history and backup, optional capabilities, and review rules before actions are taken. We will use it to explain the pattern, not require anyone to build a personal almanac during the session.</p></div></div></div></section>
+    <section id="mental-model" class="contrast"><div class="wrap"><div class="intro"><div><p class="kicker">Part 1 / Mental model</p><h2>A model is not a workflow.</h2></div><p>A chat assistant answers what you paste. A project-aware tool can inspect files, propose edits, run checks, and see errors. That extra context removes many obvious mistakes. It does not decide whether the resulting claim, grade, or recommendation is right.</p></div><div class="split"><div><p class="big-quote">“AI drafts. You decide.”</p><p class="small">That is the same division of labor in the AI crash course and in BUS 751. The assistant handles mechanical work; your subject knowledge defines the target and certifies the result.</p></div><div class="block"><p class="tiny">What makes it a harness?</p><h3>The model plus an environment</h3><p><strong>Context:</strong> files and source material it may read.<br><strong>Instructions:</strong> the job, constraints, and output format.<br><strong>Tools:</strong> the ability to edit, search, or run checks.<br><strong>Boundaries:</strong> what needs review before it leaves the workspace.</p></div></div><p class="margin-note warn" style="color:var(--ink)">A capable tool can make a subtle mistake that runs cleanly and looks polished. The more fluent the output, the more important the check.</p></div></section>
 
-    <section id="try"><div class="shell"><div class="section-head"><p class="eyebrow">03 / Practice the loop</p><h2>One question, two passes</h2><p class="lede">First ask the harness to understand your question or workflow. Then ask it to take one bounded step and show evidence.</p></div><div class="two-col"><div class="prompt"><h3>Pass one: inspect</h3><p>Use this with a question, workflow, or small non-sensitive project.</p><pre id="prompt-one">Here is my question or workflow: [describe it]. Before acting, tell me what you understand, what information you would need, and the smallest useful first step. Do not edit or send anything yet. Tell me how we could verify the result.</pre><button type="button" data-copy="prompt-one" aria-label="Copy inspection prompt">Copy prompt</button></div><div class="prompt"><h3>Pass two: act and verify</h3><p>Adapt the brackets before sending.</p><pre id="prompt-two">Take this next step: [specific outcome]. Use only [approved context]. Do not [boundary]. Show the result and check it against [success criterion]. If you cannot verify something, say so clearly.</pre><button type="button" data-copy="prompt-two" aria-label="Copy change and verification prompt">Copy prompt</button></div></div><div class="two-col" style="margin-top:2rem"><div><h3>Inspect the result</h3><ol class="steps"><li>Compare before and after. Did it change only what you asked?</li><li>Run the check or read the output. Are details and numbers supported?</li><li>Ask what remains uncertain. Fix or reject weak work before sharing.</li></ol></div><div><h3>A good first task</h3><p>Start with a reversible draft: improve a public event checklist, turn a rough agenda into a one-page outline, or summarize a synthetic dataset. A high-stakes decision, final grade, or external message needs a separate human check.</p><p><strong>Exit ticket:</strong> What changed? How did you verify it? What would you keep under human control?</p></div></div></div></section>
+    <section id="github"><div class="wrap"><div class="intro"><div><p class="kicker">Part 2 / About 20 minutes</p><h2>Stop naming files “final_final.”</h2></div><p>We begin GitHub with a problem everyone recognizes. A shared folder of <span class="filename">agenda_final.docx</span>, <span class="filename">agenda_final_v2.docx</span>, and <span class="filename">agenda_USE_THIS.docx</span> cannot tell you which is authoritative, what changed, who changed it, or why.</p></div><div class="split"><div class="block rule"><p class="tiny">Git</p><h3>The project remembers</h3><p>A repository is a project folder with a history. A commit is a named checkpoint for the project, not another copy with “final” in its filename. A diff shows exactly what changed.</p></div><div class="block rule"><p class="tiny">GitHub</p><h3>The project has a shared home</h3><p>GitHub stores a remote copy and gives collaborators a place to inspect files, changes, and history. Check whether a repository is public or private. A local commit is not on GitHub until it is pushed.</p></div></div><div class="margin-note"><strong>Live check:</strong> Open a sample repository. Find its README, one change in the history, the before/after diff, and the visibility setting. A useful README answers: what is this, why does it exist, and where should I look first?</div></div></section>
 
-    <section id="tools"><div class="shell"><div class="section-head"><p class="eyebrow">04 / Optional setup</p><h2>Pick a path when you are ready.</h2><p class="lede">A free GitHub account is useful if you want to practice with a repository. You do not need an account or either desktop app to follow the workshop.</p></div><details><summary>Create a free GitHub account</summary><p>Follow <a href="https://docs.github.com/en/account-and-profile/how-tos/account-management/creating-an-account-on-github">GitHub's account guide</a>, choose a free personal account, and verify your email. If you already have a GitHub account, just sign in. You do not need to create a public repository for this workshop.</p></details><details><summary>Download ChatGPT Desktop</summary><p>Get the <a href="https://learn.chatgpt.com/docs/app">ChatGPT desktop app</a>, sign in, and choose Codex for a project or folder. Start with the inspection prompt above, then review proposed file changes and permissions before continuing.</p></details><details><summary>Download Claude Desktop</summary><p>Get the <a href="https://claude.com/download">Claude desktop app</a> and sign in. Claude Code is available inside the app on eligible plans. Start with a small project folder, ask for an explanation before edits, and inspect what the tool proposes to do.</p></details><details><summary>No setup today</summary><p>Follow the guided demonstration, save the two prompts, and try them later on a non-sensitive example. You can learn the workflow before choosing a product.</p></details><div class="note"><strong>Institutional data check:</strong> Before uploading or connecting real student, personnel, research, or financial material, check McNeese policy and the approved accounts available to you. The workshop examples use synthetic or public material.</div></div></section>
+    <section id="harness" class="contrast"><div class="wrap"><div class="intro"><div><p class="kicker">Part 3 / Build a harness</p><h2>Give the assistant a desk.</h2></div><p>Our example is a small faculty workshop. The job is to improve a one-page participant guide using a source brief and an agenda. The assistant must not invent logistics, contact attendees, or publish. The point is not the product; it is the repeatable arrangement around it.</p></div><div class="demo"><div><p class="tiny">A deliberately small repository</p><pre class="file-tree">workshop-guide/
+├── <b>README.md</b>       what this project is
+├── <b>brief.md</b>        dates, audience, constraints
+├── <b>agenda.md</b>       current session plan
+├── <b>guide.md</b>        participant-facing draft
+└── <b>AGENTS.md</b>       standing work instructions</pre></div><div class="block"><p class="tiny">The standing brief</p><h3>What <span class="filename">AGENTS.md</span> says</h3><p>Read <span class="filename">brief.md</span> and <span class="filename">agenda.md</span> before touching the guide. Keep logistics grounded in those files. Save a draft in <span class="filename">guide.md</span>. Run a cross-check and show the diff. Do not send email or publish without a separate decision.</p><p>This is the portable pattern behind the Almanac Field Guide: durable files, explicit roles, optional capabilities, and review before outward action. We are borrowing the architecture, not asking anyone to build an Almanac.</p></div></div><p class="margin-note warn" style="color:var(--ink)"><strong>Ask first:</strong> What would make this result wrong? If you cannot name a failure condition, neither you nor the tool has a clear target.</p></div></section>
+
+    <section id="demo"><div class="wrap"><div class="intro"><div><p class="kicker">Part 4 / Two short demonstrations</p><h2>From request to checked result.</h2></div><p>We will compare the work, not just applaud the answer. The first demo revises the workshop guide. The second checks a small synthetic attendance table. Both finish with evidence and a keep/revise/reject decision.</p></div><ol class="ladder"><li><div><strong>Describe intent</strong>“Make a one-page participant guide that matches the brief.” Name the source files, audience, desired length, and no-send boundary.</div></li><li><div><strong>Inspect before writing</strong>Ask what the assistant found, what it cannot confirm, and which files it plans to change.</div></li><li><div><strong>Draft one bounded change</strong>Let it edit only <span class="filename">guide.md</span>. Review the diff in GitHub or the desktop app.</div></li><li><div><strong>Check the claim</strong>Compare dates and venue with <span class="filename">brief.md</span>. For the table, count rows and calculate one total by hand.</div></li><li><div><strong>Own the decision</strong>Keep the accurate change, revise the weak one, or reject it. A finished draft is not a sent announcement.</div></li></ol><div class="split"><div class="prompt"><p class="tiny">Prompt 1 / Explain before write</p><pre id="prompt-one">Read README.md, brief.md, and agenda.md. Before editing, tell me who this guide is for, what facts the files establish, what is missing, and one way the draft could be wrong. Do not change or send anything yet.</pre><button type="button" data-copy="prompt-one">Copy prompt</button></div><div class="prompt"><p class="tiny">Prompt 2 / Act and verify</p><pre id="prompt-two">Revise guide.md into a one-page participant guide using only the facts in brief.md and agenda.md. Do not invent dates, venues, or attendance; do not email or publish. Show the diff, check every logistical claim against its source, and list anything that still needs my decision.</pre><button type="button" data-copy="prompt-two">Copy prompt</button></div></div><p class="margin-note"><strong>Transfer this to data work:</strong> “Read the two tables, report the join key's type in each, preserve every order row, and show row counts before and after.” That comes from the BUS 751 method: specify the source, target, constraint, and falsifiable check.</p></div></section>
+
+    <section id="schedule"><div class="wrap"><div class="intro"><div><p class="kicker">The run of show</p><h2>Two hours, one arc.</h2></div><p>We are not doing an installation clinic. This is a guided demonstration with time to test your own ideas near the end.</p></div><div class="timeline"><article><span class="minutes">00–15</span><h3>Model vs. harness</h3><p>Context, tools, boundaries, and the human decision.</p></article><article><span class="minutes">15–35</span><h3>GitHub</h3><p>Repository, commit, diff, and private/public visibility.</p></article><article><span class="minutes">35–70</span><h3>Build the desk</h3><p>Standing brief, project files, checks, and the Field Guide pattern.</p></article><article><span class="minutes">70–95</span><h3>End to end</h3><p>A document change and a tiny data check, including a rejected result.</p></article><article><span class="minutes">95–120</span><h3>Your examples</h3><p>Audience questions, safe stand-ins, and one next step each.</p></article></div></div></section>
+
+    <section id="take-home"><div class="wrap"><div class="intro"><div><p class="kicker">After the workshop</p><h2>Your first harness can be tiny.</h2></div><p>Choose one repeatable task. Put its source files in a project folder, add a short standing brief, ask for one bounded change, and decide how you will check it. Add integrations only after that simple loop works.</p></div><div class="table-scroll"><table><thead><tr><th>Question</th><th>Write down</th><th>Example</th></tr></thead><tbody><tr><td>What is the job?</td><td>One useful output</td><td>Draft a participant guide</td></tr><tr><td>What may it use?</td><td>Approved files and facts</td><td><span class="filename">brief.md</span> and <span class="filename">agenda.md</span></td></tr><tr><td>What is off limits?</td><td>Actions that need a person</td><td>No invented details, no sending</td></tr><tr><td>How will you know?</td><td>A check that can fail</td><td>Match every date to the source brief</td></tr></tbody></table></div><div class="split" style="margin-top:2rem"><div><h3>Optional setup</h3><details><summary>GitHub: free personal account</summary><p>Use <a href="https://docs.github.com/en/account-and-profile/how-tos/account-management/creating-an-account-on-github">GitHub's account guide</a> and verify your email. You do not need to create a public repository for this session.</p></details><details><summary>ChatGPT Desktop</summary><p>Download from <a href="https://openai.com/chatgpt/desktop/">OpenAI</a>. Sign in, then explore the available project/Codex tools for your plan. Review file access and changes before approving them.</p></details><details><summary>Claude Desktop</summary><p>Download from <a href="https://claude.com/download">Claude</a>. Sign in, then explore Claude Code if available on your plan. Start with a small project and ask for an explanation before edits.</p></details></div><div class="block rule"><p class="tiny">A useful habit from BUS 751</p><h3>Explain. Test. Compare.</h3><p>Ask for an explanation before a rewrite. Ask for a check that fails on a bad result. Ask for alternatives and tradeoffs before making a consequential choice. These habits work with or without an AI tool.</p><p><strong>Exit question:</strong> What did the assistant change, how did you verify it, and what decision remained yours?</p></div></div></div></section>
   </main>
-  <footer><div class="shell">AI Harness Field Guide · Workshop handout for McNeese faculty and staff. Check institutional policies before using real material. <a href="#main">Back to top</a></div></footer>
+  <footer><div class="wrap">Joshua E. Lambert · AI Harness Field Guide for a McNeese faculty and staff workshop. Examples are synthetic. Check institutional policy before using real material. <a href="#main">Back to top</a></div></footer>
   <script>
     document.querySelectorAll('[data-copy]').forEach((button) => {
       button.addEventListener('click', async () => {
-        const text = document.getElementById(button.dataset.copy).textContent;
-        try {
-          await navigator.clipboard.writeText(text);
-          button.textContent = 'Copied';
-          setTimeout(() => { button.textContent = 'Copy prompt'; }, 2200);
-        } catch (_) {
-          button.textContent = 'Select and copy the text above';
-        }
+        const original = button.textContent;
+        const value = document.getElementById(button.dataset.copy).textContent;
+        try { await navigator.clipboard.writeText(value); button.textContent = 'Copied'; }
+        catch (_) { button.textContent = 'Select the text above to copy'; }
+        setTimeout(() => { button.textContent = original; }, 2500);
       });
     });
   </script>

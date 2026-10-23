@@ -12,6 +12,7 @@ For this workshop, a harness is the working environment around a model: the proj
 - [`slides/mcneese-ai-harnesses.md`](slides/mcneese-ai-harnesses.md): editable Marp source for the two-hour workshop slides.
 - [`slides/mcneese-ai-harnesses.html`](slides/mcneese-ai-harnesses.html): browser presentation, kept in this private repo for review.
 - [`slides/mcneese-ai-harnesses.pdf`](slides/mcneese-ai-harnesses.pdf): offline presentation copy.
+- [`examples/workshop-guide/`](examples/workshop-guide/): public-safe demo repository with a source brief, agenda, flawed starting draft, standing agent brief, and a tiny CSV with a duplicate row.
 - [`facilitator/run-of-show.md`](facilitator/run-of-show.md): two-hour teaching plan and demo checkpoints.
 - [`facilitator/source-map.md`](facilitator/source-map.md): what was adapted from the earlier crash course and BUS 751, including distribution boundaries.
 - [`PUBLISHING.md`](PUBLISHING.md): how the handout is published to JELambert.com.

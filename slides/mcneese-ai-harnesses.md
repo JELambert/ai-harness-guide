@@ -5,198 +5,255 @@ size: 16:9
 paginate: true
 html: true
 style: |
-  :root { --ink: #17283d; --muted: #50647a; --paper: #f6f4ef; --teal: #076b69; --orange: #dc6a37; --navy: #102d49; }
-  section { background: var(--paper); color: var(--ink); padding: 72px 92px; font-family: "Avenir Next", Avenir, "Segoe UI", sans-serif; font-size: 32px; line-height: 1.32; }
-  section::after { color: var(--muted); font-size: 18px; }
-  h1 { font-family: "Iowan Old Style", Georgia, serif; font-size: 60px; font-weight: 600; letter-spacing: -0.035em; line-height: 1.08; margin: 0 0 38px; }
-  h2 { font-family: "Iowan Old Style", Georgia, serif; font-size: 40px; line-height: 1.16; margin: 0 0 24px; }
-  p { margin: 0 0 22px; }
-  li { margin: 0 0 18px; }
-  strong { color: var(--teal); }
-  small { color: var(--muted); font-size: 22px; }
-  code { background: #e2ebe7; color: var(--navy); padding: 0.08em 0.22em; }
-  pre { background: #e2ebe7; color: var(--navy); padding: 22px 30px; font-size: 23px; line-height: 1.4; border-left: 6px solid var(--teal); }
-  pre code { background: transparent; padding: 0; }
-  blockquote { border-left: 6px solid var(--orange); margin: 18px 0; padding: 8px 0 8px 24px; color: var(--navy); }
-  section.cover, section.dark { background: var(--navy); color: #fffefa; }
-  section.cover h1, section.dark h1 { color: #fffefa; }
-  section.cover h1 { font-size: 76px; max-width: 1000px; }
-  section.cover p, section.dark p, section.dark li { color: #dbe9ed; }
-  section.cover small, section.dark small { color: #c8d9df; }
-  section.dark strong, section.cover strong { color: #f2b26e; }
-  section.dark::after, section.cover::after { color: #c8d9df; }
-  section.question h1 { color: var(--teal); font-size: 72px; }
-  section.compact { font-size: 29px; }
-  section.compact li { margin-bottom: 13px; }
-  section.prompt pre { font-size: 24px; }
-  a { color: var(--teal); }
+  :root { --paper:#f3f1eb; --ink:#14202a; --blue:#244acb; --coral:#df6549; --muted:#52606a; --pale:#e6eaff; }
+  section { background:var(--paper); color:var(--ink); padding:70px 90px; font-family:"Avenir Next",Arial,sans-serif; font-size:31px; line-height:1.32; }
+  section::after { color:var(--muted); font-size:18px; }
+  h1,h2 { letter-spacing:-.04em; line-height:1.06; margin:0 0 28px; }
+  h1 { font-size:67px; max-width:1050px; }
+  h2 { font-size:45px; }
+  p { margin:0 0 22px; }
+  li { margin:0 0 15px; }
+  strong { color:var(--blue); }
+  small { font-size:21px; color:var(--muted); }
+  code { background:#e2e6f8; color:#142c81; padding:.05em .18em; }
+  pre { background:#e6eaff; border-left:6px solid var(--blue); padding:22px 28px; font-size:24px; line-height:1.34; }
+  pre code { background:transparent; padding:0; }
+  blockquote { border-left:7px solid var(--coral); margin:10px 0; padding:10px 0 10px 28px; font-family:Georgia,serif; font-size:41px; }
+  table { font-size:25px; }
+  th { color:var(--blue); }
+  section.dark,section.cover { background:var(--ink); color:#f5f7ff; }
+  section.dark h1,section.cover h1 { color:#f5f7ff; }
+  section.dark strong,section.cover strong { color:#98b1ff; }
+  section.dark small,section.cover small { color:#c4d0e0; }
+  section.dark::after,section.cover::after { color:#c4d0e0; }
+  section.cover h1 { font-size:88px; }
+  section.question h1 { color:var(--blue); font-size:78px; }
+  section.compact { font-size:27px; }
+  section.compact li { margin-bottom:11px; }
+  section.prompt pre { font-size:27px; }
 ---
 
 <!-- _class: cover -->
 <!-- _paginate: false -->
 
-# AI harnesses for everyday work
+# Make the work visible.
 
-McNeese faculty and staff workshop<br>Joshua E. Lambert
+AI harnesses for everyday work<br>McNeese faculty and staff workshop
 
-<small>Guided demo · Optional setup · Two hours</small>
+<small>Joshua E. Lambert · Guided demo · Optional setup</small>
 
 ---
 
 <!-- _class: question -->
 
-# What work would you bring to AI?
+# What would you bring to AI?
 
-One question or recurring workflow is enough. You can watch the demonstration without installing anything.
-
----
-
-<!-- _class: compact -->
-
-# Our two hours
-
-- **0-15:** The mental model and control points
-- **15-35:** GitHub, repositories, and saved changes
-- **35-70:** Build a small harness, then look at the Almanac Field Guide
-- **70-95:** Two short workflows from request to checked result
-- **95-120:** Your questions and live examples
+A question or recurring task is enough. No installation is required today.
 
 ---
 
-<!-- _class: dark -->
+# What we will do
 
-# A model and a harness
-
-The **model** generates or analyzes content.
-
-The **harness** supplies the working environment: files, tools, instructions, permissions, and checks.
-
-<small>Codex and Claude Code are two ways to work inside a harness.</small>
-
----
-
-# What changes when AI can use a project?
-
-It can inspect the relevant files, draft an edit, and show the difference.
-
-You can then run a check and decide whether to keep the work.
+**00–15** A model, a harness, and your control points<br>
+**15–35** GitHub in 20 minutes<br>
+**35–70** Build a small harness<br>
+**70–95** Two workflows, including a bad answer<br>
+**95–120** Your questions and live examples
 
 ---
 
 <!-- _class: dark -->
 
-# The working loop
+# A model is not a workflow.
 
-1. **Scope:** Name the result and the boundaries.
-2. **Inspect:** Read the relevant context.
-3. **Act:** Produce one bounded change or draft.
-4. **Verify:** Check the result against your original request.
+The **model** generates or analyzes.
+
+The **harness** gives it files, instructions, tools, boundaries, and checks.
+
+<small>A better tool can still deliver a polished wrong answer.</small>
 
 ---
 
-# Your control points
+# The context difference
 
-- Which files may the harness read?
-- What may it change?
-- Which actions need separate approval?
-- What evidence would make the result usable?
+| | Chat window | Project-aware tool |
+|---|---|---|
+| Source | What you paste | Files it can inspect |
+| Change | You copy it back | Proposes edits to files |
+| Check | Your manual test | Can run a test and show the result |
 
-<small>Use public or synthetic material in today's live examples.</small>
+<small>More context removes obvious errors, not subtle judgment errors.</small>
 
 ---
 
 <!-- _class: dark -->
 
-# Git and GitHub
+# AI drafts. You decide.
 
-**Git** records versions of files and shows what changed.
+The assistant can move the mechanical work along.
 
-**GitHub** gives a repository a place to live online and supports review and collaboration.
-
-<small>A repository may be private or public. Check visibility before adding material.</small>
+You define what correct means, inspect the evidence, and decide whether to keep the result.
 
 ---
 
-# What we will inspect in a repository
+<!-- _class: question -->
 
-1. The project files and a short README
-2. A commit, which saves a checkpoint
-3. A diff, which shows the exact change
-4. The visibility setting
+# Which file is really final?
+
+`agenda_final.docx`<br>
+`agenda_final_v2.docx`<br>
+`agenda_USE_THIS.docx`
+
+---
+
+# Four questions filenames cannot answer
+
+1. Which version is authoritative?
+2. What changed?
+3. Who changed it, and why?
+4. Can we return to the earlier version?
+
+---
+
+<!-- _class: dark -->
+
+# Git records the past. GitHub shares it.
+
+A **repository** is a project folder with history.
+
+A **commit** is a named checkpoint for the whole project.
+
+A **diff** shows exactly what changed.
+
+<small>Local commits do not reach GitHub until pushed. Check public/private visibility.</small>
+
+---
+
+# A 90-second repository tour
+
+Open the sample project and find:
+
+- The README: what is this and where do I start?
+- One commit: what changed and why?
+- The diff: which lines moved?
+- The visibility setting: who can see this?
+
+---
+
+<!-- _class: dark -->
+
+# Give the assistant a desk.
+
+Our example: improve a one-page faculty workshop guide.
+
+It may read the brief and agenda, draft the guide, and show the diff.
+
+It may **not** invent logistics, email anyone, or publish.
+
+---
+
+# The project, in five files
+
+```text
+workshop-guide/
+  README.md      what this project is
+  brief.md       dates, audience, constraints
+  agenda.md      current plan
+  guide.md       participant draft
+  AGENTS.md      standing instructions
+```
+
+---
+
+# What the standing brief says
+
+Read the brief and agenda first.
+
+Edit only the participant guide.
+
+Show the diff and check each logistical claim.
+
+Do not send or publish without a separate decision.
+
+<small>The Almanac Field Guide scales this same pattern to more roles and capabilities.</small>
+
+---
+
+<!-- _class: question -->
+
+# What would make the answer wrong?
+
+If you cannot name one failure condition, the task is not scoped yet.
 
 ---
 
 <!-- _class: prompt -->
 
-# A small harness brief
+# Pass 1: explain before write
 
 ```text
-Goal: improve the event checklist.
-Read: README and checklist.md only.
-Change: draft a clearer checklist.
-Do not: email anyone or publish the result.
-Check: compare the draft to the original requirements.
+Read README.md, brief.md, and agenda.md.
+Tell me what facts they establish, what is missing,
+and one way the guide could be wrong.
+Do not edit or send anything yet.
 ```
-
-<small>The brief makes the work repeatable and reviewable.</small>
-
----
-
-# The Almanac Field Guide
-
-The larger example keeps durable context in plain files and gives the agent a shared brief.
-
-Capabilities can be added when needed. Review rules govern what happens before an action leaves the workspace.
-
-<small>We are borrowing its structure, not building an Almanac during this session.</small>
-
----
-
-<!-- _class: dark -->
-
-# Demo 1: an event checklist
-
-**Input:** A short, incomplete checklist in a sample repository.
-
-**Task:** Draft a clearer version without sending or publishing it.
-
-**Check:** Compare the diff with the original event requirements.
-
----
-
-<!-- _class: dark -->
-
-# Demo 2: a tiny dataset
-
-**Input:** A synthetic CSV and a question about its totals.
-
-**Task:** Inspect the columns and produce a short summary.
-
-**Check:** Recalculate the key number from the source rows.
-
----
-
-# Before you use a result
-
-- Did the harness use the right source material?
-- Did it change only what you asked?
-- Can you reproduce or inspect its key claim?
-
-If a check fails, revise or reject the draft.
 
 ---
 
 <!-- _class: prompt -->
 
-# A first prompt to try
+# Pass 2: act and verify
 
 ```text
-Here is my question or workflow: [describe it].
-Before acting, tell me what you understand,
-what information you need, and the smallest
-useful first step. Do not edit or send anything.
-Tell me how we could verify the result.
+Revise guide.md using only the brief and agenda.
+Do not invent dates, venues, or attendance.
+Do not email or publish. Show the diff.
+Check each logistical claim against its source.
 ```
+
+---
+
+# Inspect the change
+
+Did it use the right source files?
+
+Did it edit only the requested file?
+
+Are the dates and venue supported?
+
+What remains uncertain?
+
+<small>Keep, revise, or reject. A draft is not a sent announcement.</small>
+
+---
+
+<!-- _class: dark -->
+
+# Demo 2: numbers need a check
+
+A tiny synthetic attendance table says **120 attendees**.
+
+Count the source rows. Identify duplicates. Calculate the total by hand.
+
+The interesting moment is when the attractive summary fails that check.
+
+---
+
+# A request that can be falsified
+
+“Read both tables. Report the join key's type in each. Preserve every order row. Show row counts before and after.”
+
+<small>From BUS 751: name the files, target, constraint, and check.</small>
+
+---
+
+# Three habits worth keeping
+
+**Explain before write:** understand the current work first.
+
+**Test first:** make a bad result fail visibly.
+
+**Alternatives, not an answer:** see tradeoffs before you decide.
 
 ---
 
@@ -204,14 +261,14 @@ Tell me how we could verify the result.
 
 # What should we try together?
 
-Offer a question or workflow. We will pick a safe public or made-up example, define its boundaries, and test one small step.
+Offer a workflow. We will choose a safe stand-in, define the boundary, and test one small step.
 
 ---
 
 <!-- _class: dark -->
 
-# Your next step
+# Your first harness can be tiny.
 
-Choose one workflow. Write down its source material, one boundary, and one success check.
+One task. A few source files. A standing brief. One check. A human decision.
 
-The handout and optional setup paths are at **jelambert.com/ai-harness-guide/**
+<small>Handout and optional setup: jelambert.com/ai-harness-guide/</small>

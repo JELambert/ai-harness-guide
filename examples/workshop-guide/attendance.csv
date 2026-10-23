@@ -1,0 +1,7 @@
+participant_id,session,attended
+P001,Intro,yes
+P002,Intro,yes
+P003,Intro,no
+P002,Intro,yes
+P004,Intro,yes
+P005,Intro,yes
